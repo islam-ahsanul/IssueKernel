@@ -1,18 +1,22 @@
 package com.example.issuekernel.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer user_id;
+    @Column(nullable = false)
     private String full_name;
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password_hash;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private String role;
 
     public User(Integer user_id, String full_name, String email, String password_hash, String role){
