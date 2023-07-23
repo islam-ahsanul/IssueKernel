@@ -15,7 +15,7 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password_hash;
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private String role;
 
