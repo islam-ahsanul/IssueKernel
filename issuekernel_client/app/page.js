@@ -4,9 +4,8 @@ export default function Home() {
   return (
     <section className="w-full flex-center flex-col m-15">
       <h1 className="head_text text-center">
-        <span className="black_gradient text-center">Log In</span>
+        <span className="orange_gradient text-center">Welcome</span>
       </h1>
-      <div>Login form placeholder</div>
     </section>
   );
 }
