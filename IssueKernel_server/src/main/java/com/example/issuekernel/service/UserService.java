@@ -17,6 +17,8 @@ public class UserService {
     }
     public User createUser(User user){
         // Perform any necessary validations before saving the user
+        user.setRole("Consumer");
+        user.setPassword_hash(user.getPassword_hash());
         return userRepository.save(user);
     }
     public User getUserById(Integer id) {
@@ -28,4 +30,8 @@ public class UserService {
     }
 
     // Additional service methods as per your requirement
+    public boolean validateUserCredentials(String email, String password) {
+        User user = getUserByEmail(email);
+        return user != null && user.checkPassword(password);
+    }
 }
