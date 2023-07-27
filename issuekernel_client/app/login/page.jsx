@@ -2,26 +2,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-// const login = () => {
-//   return (
-//     <section className="w-full flex-center flex-col m-15">
-//       <h1 className="head_text text-center">
-//         <span className="black_gradient text-center ">Log In</span>
-//       </h1>
-//       <div>Login form placeholder</div>
-//       <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-//         Announcing our next round of funding.{' '}
-//         <a href="#" class="font-semibold text-indigo-600">
-//           <span class="absolute inset-0" aria-hidden="true"></span>Read more{' '}
-//           <span aria-hidden="true">&rarr;</span>
-//         </a>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default login;
-
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
