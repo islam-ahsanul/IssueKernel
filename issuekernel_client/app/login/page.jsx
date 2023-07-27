@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 
 // const login = () => {
 //   return (
@@ -46,16 +47,18 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex flex-col w-full max-w-full justify-center items-center h-screen ">
       <form
         onSubmit={handleSubmit}
-        className="p-8 bg-white shadow-md rounded-md"
+        className="w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
-        <div className="mb-4">
+        <h1 className="head_text text-center">
+          <span className="blue_gradient">Login</span>
+        </h1>
+        <div className="mb-1">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
+            className="block font-satoshi font-semibold text-gray-700 ml-1"
           >
             Email
           </label>
@@ -64,14 +67,15 @@ const Login = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            className="form_input"
+            placeholder="Enter your email"
             required
           />
         </div>
         <div className="mb-6">
           <label
             htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
+            className="block font-satoshi font-semibold text-gray-700 ml-1"
           >
             Password
           </label>
@@ -80,16 +84,23 @@ const Login = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            className="form_input"
+            placeholder="Enter password"
             required
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600"
+          className="font-satoshi w-full bg-indigo-500 text-white py-2 px-4 rounded-full hover:bg-indigo-600"
         >
           Log In
         </button>
+        <p className="flex gap-1 justify-center">
+          Don't have account? Please{' '}
+          <Link href="/" className="text-indigo-600 font-bold hover:underline">
+            Create Account
+          </Link>
+        </p>
       </form>
     </div>
   );
