@@ -77,7 +77,10 @@ const Login = () => {
         </button>
         <p className="flex gap-1 justify-center">
           Don't have account? Please{' '}
-          <Link href="/" className="text-indigo-600 font-bold hover:underline">
+          <Link
+            href="/register"
+            className="text-indigo-600 font-bold hover:underline"
+          >
             Create Account
           </Link>
         </p>
