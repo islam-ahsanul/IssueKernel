@@ -57,9 +57,9 @@ public class User {
         return password_hash;
     }
 
-//    public void setPassword_hash(String password_hash) {
-//        this.password_hash = password_hash;
-//    }
+    public void setPassword_hash(String password_hash) {
+        this.password_hash = password_hash;
+    }
 
     public String getRole() {
         return role;
@@ -68,11 +68,12 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-    public void setPassword_hash(String password) {
-        this.password_hash = BCrypt.hashpw(password, BCrypt.gensalt());
-    }
+//    public void setPassword_hash(String password) {
+//        String salt = BCrypt.gensalt();
+//        this.password_hash = BCrypt.hashpw(password, salt);
+//    }
 
-    public boolean checkPassword(String password) {
-        return BCrypt.checkpw(password, this.password_hash);
-    }
+//    public boolean checkPassword(String password) {
+//        return BCrypt.checkpw(password, this.password_hash);
+//    }
 }
