@@ -63,7 +63,8 @@ public class UserController {
         String password = loginRequest.getPassword();
 
         if (userService.validateUserCredentials(email, password)) {
-            String token = generateJwtToken(email);
+            User user = userService.getUserByEmail(email);
+            String token = generateJwtToken(email, user.getFull_name());
             return new ResponseEntity<>(token, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
@@ -93,7 +94,7 @@ public class UserController {
 
 
 
-    private String generateJwtToken(String email){
+    private String generateJwtToken(String email, String full_name){
 //      Here, you should use a library like jjwt to generate JWT token
 //      For simplicity, we are returning a dummy token
 //        return "nokol_token";
@@ -105,6 +106,8 @@ public class UserController {
         Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
         String token = Jwts.builder()
                 .setSubject(email)
+                .claim("email", email)
+                .claim("full_name", full_name)
                 .setExpiration(expirationDate)
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
