@@ -5,31 +5,52 @@ import Link from 'next/link';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Call your Spring Boot backend's authentication API here with the email and password
-    // Example API call:
-    // fetch('/api/login', {
-    //   method: 'POST',
-    //   body: JSON.stringify({ email, password }),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   // Handle the response from the backend here (e.g., set authentication tokens, redirect, etc.)
-    // })
-    // .catch((error) => {
-    //   // Handle any errors from the API call here
-    // });
+    setSubmitting(true);
+
+    try {
+      const response = await fetch('http://localhost:8080/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      if (response.status === 200) {
+        // Login successful, handle the response data
+        const data = await response.text();
+        console.log('Login success:', data);
+        // You can handle successful login, redirect the user, etc.
+      } else if (response.status === 401) {
+        // Invalid credentials
+        console.log('Invalid credentials');
+        // Show an error message to the user, for example:
+        // setError('Invalid email or password');
+      } else {
+        // Handle other error scenarios (e.g., server errors)
+        console.log('Unexpected error:', response.statusText);
+        // Show a generic error message to the user, for example:
+        // setError('An unexpected error occurred');
+      }
+    } catch (error) {
+      console.log('errrr login');
+      console.log(error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <div className="flex flex-col w-full max-w-full justify-center items-center h-screen ">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleLogin}
         className="w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
         <h1 className="head_text text-center">
