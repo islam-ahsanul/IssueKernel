@@ -24,12 +24,13 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        // Login successful, handle the response data
+        // Login successful
         const data = await response.text();
+        localStorage.setItem('token', data);
         console.log('Login success:', data);
         // You can handle successful login, redirect the user, etc.
+        fetchUserInfo(data);
       } else if (response.status === 401) {
-        // Invalid credentials
         console.log('Invalid credentials');
         // Show an error message to the user, for example:
         // setError('Invalid email or password');
@@ -44,6 +45,35 @@ const Login = () => {
       console.log(error);
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const fetchUserInfo = async (token) => {
+    try {
+      const decodedToken = JSON.parse(atob(token.split('.')[1]));
+      const email = decodedToken.email;
+
+      const response = await fetch(
+        `http://localhost:8080/api/users/email/${email}`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        const userInfo = await response.json();
+        console.log('User Info:', userInfo);
+        // Update your state with the user information (e.g., fullName and email)
+        // setUserFullName(userInfo.fullName);
+        // setUserEmail(userInfo.email);
+      } else {
+        console.log('Error fetching user information:', response.statusText);
+      }
+    } catch (error) {
+      console.log('Error fetching user information:', error);
     }
   };
 
