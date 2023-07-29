@@ -124,7 +124,7 @@ const Login = () => {
           type="submit"
           className="font-satoshi w-full bg-indigo-500 text-white py-2 px-4 rounded-full hover:bg-indigo-600"
         >
-          Log In
+          {submitting ? 'Loging in...' : 'Login'}
         </button>
         <p className="flex gap-1 justify-center">
           Don't have account? Please{' '}

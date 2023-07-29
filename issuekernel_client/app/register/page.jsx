@@ -117,7 +117,7 @@ const Register = () => {
           type="submit"
           className="font-satoshi w-full bg-indigo-500 text-white py-2 px-4 rounded-full hover:bg-indigo-600"
         >
-          Create Account
+          {submitting ? 'Creating Accout...' : 'Create Account'}
         </button>
       </form>
     </div>
