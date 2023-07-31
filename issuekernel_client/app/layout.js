@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'IssueKernel',
-  description: 'An issue tracker app',
+  description: 'An issue tracker app!',
 };
 
 export default function RootLayout({ children }) {
