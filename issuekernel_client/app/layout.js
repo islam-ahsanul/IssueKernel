@@ -13,7 +13,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <div className="main">
-          {/* if don't need the gradient remove this classname */}
           <div className="gradient"></div>
         </div>
 
