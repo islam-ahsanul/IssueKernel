@@ -65,10 +65,8 @@ const Login = () => {
 
       if (response.status === 200) {
         const userInfo = await response.json();
+        // User info from token
         console.log('User Info:', userInfo);
-        // Update your state with the user information (e.g., fullName and email)
-        // setUserFullName(userInfo.fullName);
-        // setUserEmail(userInfo.email);
       } else {
         console.log('Error fetching user information:', response.statusText);
       }
