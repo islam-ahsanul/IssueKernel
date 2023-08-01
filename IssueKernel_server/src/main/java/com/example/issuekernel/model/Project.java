@@ -1,25 +1,28 @@
 package com.example.issuekernel.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "project")
 public class Project {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer project_id;
+    @Column(nullable = false)
     private String project_name;
     private String project_desc;
-    private String manager_id;
+    @OneToOne
+    @JoinColumn(name = "manager_id", referencedColumnName = "user_id", nullable = true)
+    private User manager;
 
-    public Project(Integer project_id, String project_name, String project_desc, String manager_id) {
+    public Project(Integer project_id, String project_name, String project_desc, User manager) {
         this.project_id = project_id;
         this.project_name = project_name;
         this.project_desc = project_desc;
-        this.manager_id = manager_id;
+        this.manager = manager;
     }
+
     public Project(){}
 
     public Integer getProject_id() {
@@ -46,11 +49,11 @@ public class Project {
         this.project_desc = project_desc;
     }
 
-    public String getManager_id() {
-        return manager_id;
+    public User getManager() {
+        return manager;
     }
 
-    public void setManager_id(String manager_id) {
-        this.manager_id = manager_id;
+    public void setManager(User manager) {
+        this.manager = manager;
     }
 }

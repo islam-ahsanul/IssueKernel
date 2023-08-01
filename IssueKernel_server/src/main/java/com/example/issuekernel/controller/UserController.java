@@ -2,7 +2,6 @@ package com.example.issuekernel.controller;
 
 
 import com.example.issuekernel.model.User;
-import com.example.issuekernel.security.SecretKeyGenerator;
 import com.example.issuekernel.security.UserLoginRequest;
 import com.example.issuekernel.service.UserService;
 import io.jsonwebtoken.Jwts;
