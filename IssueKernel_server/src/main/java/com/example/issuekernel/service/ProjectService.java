@@ -3,6 +3,7 @@ package com.example.issuekernel.service;
 import com.example.issuekernel.model.Project;
 import com.example.issuekernel.model.User;
 import com.example.issuekernel.repository.ProjectRepository;
+import com.example.issuekernel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,8 @@ import java.util.List;
 public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
-
+    @Autowired
+    private UserRepository userRepository;
     private UserService userService;
 
     public Project createProject(Project project) {

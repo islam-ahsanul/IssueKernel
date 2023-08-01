@@ -1,7 +1,9 @@
 package com.example.issuekernel.controller;
 
+import com.example.issuekernel.model.Issue;
 import com.example.issuekernel.model.Project;
 import com.example.issuekernel.repository.ProjectRepository;
+import com.example.issuekernel.service.IssueService;
 import com.example.issuekernel.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,8 @@ import java.util.List;
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
+
+    private IssueService issueService;
 
     @GetMapping
     public ResponseEntity<List<Project>> getAllProjects() {
@@ -43,6 +47,16 @@ public class ProjectController {
         Project project = projectService.assignManagerToProject(projectId, managerId);
         if (project != null) {
             return new ResponseEntity<>(project, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{project_id}/issues")
+    public ResponseEntity<List<Issue>> getAllIssuesForProject(@PathVariable("project_id") Integer projectId) {
+        List<Issue> issues = issueService.getAllIssuesForProject(projectId);
+        if (issues != null) {
+            return new ResponseEntity<>(issues, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
