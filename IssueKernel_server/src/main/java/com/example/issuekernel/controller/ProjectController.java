@@ -2,19 +2,49 @@ package com.example.issuekernel.controller;
 
 import com.example.issuekernel.model.Project;
 import com.example.issuekernel.repository.ProjectRepository;
+import com.example.issuekernel.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/projects")
 public class ProjectController {
     @Autowired
-    ProjectRepository projectRepository;
+    private ProjectService projectService;
 
-    @GetMapping("/projects")
-    public List<Project> getAllProjects(){
-        return projectRepository.findAll();
+    @GetMapping
+    public ResponseEntity<List<Project>> getAllProjects() {
+        List<Project> projects = projectService.getAllProjects();
+        return new ResponseEntity<>(projects, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Project> createProject(@RequestBody Project project) {
+        Project savedProject = projectService.createProject(project);
+        return new ResponseEntity<>(savedProject, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{project_id}")
+    public ResponseEntity<Project> getProjectById(@PathVariable("project_id") Integer projectId) {
+        Project project = projectService.getProjectById(projectId);
+        if (project != null) {
+            return new ResponseEntity<>(project, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/{project_id}/manager")
+    public ResponseEntity<Project> assignManagerToProject(@PathVariable("project_id") Integer projectId, @RequestParam Integer managerId) {
+        Project project = projectService.assignManagerToProject(projectId, managerId);
+        if (project != null) {
+            return new ResponseEntity<>(project, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
