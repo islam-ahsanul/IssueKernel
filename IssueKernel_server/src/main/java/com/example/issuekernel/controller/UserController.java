@@ -94,11 +94,7 @@ public class UserController {
 
 
     private String generateJwtToken(String email, String full_name){
-//      Here, you should use a library like jjwt to generate JWT token
-//      For simplicity, we are returning a dummy token
-//        return "nokol_token";
 
-//      Set the expiration time of the token (e.g., 1 hour from now)
         Date expirationDate = new Date(System.currentTimeMillis() + 3600000); // 1 hour
 //        String secretKey = SecretKeyGenerator.generateRandomSecretKey();
 //        Create the JWT token
