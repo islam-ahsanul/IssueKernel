@@ -100,7 +100,7 @@ const Login = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="form_input"
+            className="form_input focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             placeholder="Enter your email"
             required
           />
@@ -117,7 +117,7 @@ const Login = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="form_input"
+            className="form_input focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             placeholder="Enter password"
             required
           />
