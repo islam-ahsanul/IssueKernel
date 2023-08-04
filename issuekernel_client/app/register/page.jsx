@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const Register = () => {
   const router = useRouter();
@@ -40,6 +41,9 @@ const Register = () => {
 
   return (
     <div className="flex flex-col w-full max-w-full justify-center items-center h-screen ">
+      <div className="main">
+        <div className="gradient"></div>
+      </div>
       <form
         onSubmit={createAccount}
         className="w-full max-w-2xl flex flex-col gap-7 glassmorphism"
@@ -50,7 +54,7 @@ const Register = () => {
         <div className="mb-1">
           <label
             htmlFor="fullname"
-            className="block font-satoshi font-semibold text-gray-700 ml-1"
+            className="block font-nunito font-semibold text-gray-700 ml-1"
           >
             Full Name
           </label>
@@ -72,7 +76,7 @@ const Register = () => {
         <div className="mb-1">
           <label
             htmlFor="email"
-            className="block font-satoshi font-semibold text-gray-700 ml-1"
+            className="block font-nunito font-semibold text-gray-700 ml-1"
           >
             Email
           </label>
@@ -94,7 +98,7 @@ const Register = () => {
         <div className="mb-6">
           <label
             htmlFor="password"
-            className="block font-satoshi font-semibold text-gray-700 ml-1"
+            className="block font-nunito font-semibold text-gray-700 ml-1"
           >
             Password
           </label>
@@ -115,10 +119,19 @@ const Register = () => {
         </div>
         <button
           type="submit"
-          className="font-satoshi w-full bg-indigo-500 text-white py-2 px-4 rounded-full hover:bg-indigo-600"
+          className="font-nunito w-full bg-black text-white py-2 px-4 rounded-full hover:bg-indigo-600"
         >
           {submitting ? 'Creating Accout...' : 'Create Account'}
         </button>
+        <p className="flex gap-1 justify-center font-nunito">
+          Already have an account? Please{' '}
+          <Link
+            href="/login"
+            className="text-black font-extrabold hover:underline hover:text-sky-600"
+          >
+            Login
+          </Link>
+        </p>
       </form>
     </div>
   );

@@ -81,6 +81,9 @@ const Login = () => {
 
   return (
     <div className="flex flex-col w-full max-w-full justify-center items-center h-screen ">
+      <div className="main">
+        <div className="gradient"></div>
+      </div>
       <form
         onSubmit={handleLogin}
         className="w-full max-w-2xl flex flex-col gap-7 glassmorphism"
@@ -91,7 +94,7 @@ const Login = () => {
         <div className="mb-1">
           <label
             htmlFor="email"
-            className="block font-satoshi font-semibold text-gray-700 ml-1"
+            className="block font-nunito font-semibold text-gray-700 ml-1"
           >
             Email
           </label>
@@ -100,7 +103,7 @@ const Login = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="form_input focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+            className="form_input"
             placeholder="Enter your email"
             required
           />
@@ -108,7 +111,7 @@ const Login = () => {
         <div className="mb-6">
           <label
             htmlFor="password"
-            className="block font-satoshi font-semibold text-gray-700 ml-1"
+            className="block font-nunito font-semibold text-gray-700 ml-1"
           >
             Password
           </label>
@@ -117,22 +120,22 @@ const Login = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="form_input focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+            className="form_input"
             placeholder="Enter password"
             required
           />
         </div>
         <button
           type="submit"
-          className="font-satoshi w-full bg-indigo-500 text-white py-2 px-4 rounded-full hover:bg-indigo-600"
+          className="font-nunito w-full bg-black text-white py-2 px-4 rounded-full hover:bg-indigo-600"
         >
           {submitting ? 'Loging in...' : 'Login'}
         </button>
-        <p className="flex gap-1 justify-center">
+        <p className="flex gap-1 justify-center font-nunito">
           Don't have account? Please{' '}
           <Link
             href="/register"
-            className="text-indigo-600 font-bold hover:underline"
+            className="text-black font-extrabold hover:underline hover:text-sky-600"
           >
             Create Account
           </Link>
