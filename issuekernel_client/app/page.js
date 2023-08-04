@@ -19,6 +19,7 @@ export default function Home() {
       setUser(decodedToken);
     }
   }, []);
+
   return (
     // <section className="w-full flex-center flex-col m-15">
     //   <h1 className="head_text text-center">

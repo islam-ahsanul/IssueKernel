@@ -1,9 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useUser } from './UserContext';
 
 const LandingNavbar = () => {
-  const session = {}; //TODO: Change later
+  const { user, setUser } = useUser();
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+  };
   return (
     // <nav className="flex justify-between items-center py-5 px-8 border-b border-nav-border gap-4">
     <nav className="flex flex-between w-full md-16 pt-3 py-5 px-20">
@@ -12,13 +17,13 @@ const LandingNavbar = () => {
           <Image src="/next.svg" width={115} height={43} alt="IssueKernel" />
         </Link>
       </div>
-      {session ? (
-        <Link href="/login" className="black_btn">
-          Login
-        </Link>
+      {user ? (
+        <button className="black_btn" onClick={handleLogout}>
+          Logout
+        </button>
       ) : (
         <Link href="/login" className="black_btn">
-          Logout
+          Login
         </Link>
       )}
     </nav>

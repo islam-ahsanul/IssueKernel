@@ -1,11 +1,13 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,7 +31,8 @@ const Login = () => {
         localStorage.setItem('token', data);
         console.log('Login success:', data);
         // You can handle successful login, redirect the user, etc.
-        fetchUserInfo(data);
+        // fetchUserInfo(data);
+        router.push('/');
       } else if (response.status === 401) {
         console.log('Invalid credentials');
         // Show an error message to the user, for example:
@@ -48,32 +51,33 @@ const Login = () => {
     }
   };
 
-  const fetchUserInfo = async (token) => {
-    try {
-      const decodedToken = JSON.parse(atob(token.split('.')[1]));
-      const email = decodedToken.email;
+  //~ Fetch User block
+  // const fetchUserInfo = async (token) => {
+  //   try {
+  //     const decodedToken = JSON.parse(atob(token.split('.')[1]));
+  //     const email = decodedToken.email;
 
-      const response = await fetch(
-        `http://localhost:8080/api/users/email/${email}`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+  //     const response = await fetch(
+  //       `http://localhost:8080/api/users/email/${email}`,
+  //       {
+  //         method: 'GET',
+  //         headers: {
+  //           Authorization: token,
+  //         },
+  //       }
+  //     );
 
-      if (response.status === 200) {
-        const userInfo = await response.json();
-        // User info from token
-        console.log('User Info:', userInfo);
-      } else {
-        console.log('Error fetching user information:', response.statusText);
-      }
-    } catch (error) {
-      console.log('Error fetching user information:', error);
-    }
-  };
+  //     if (response.status === 200) {
+  //       const userInfo = await response.json();
+  //       // User info from token
+  //       console.log('User Info:', userInfo);
+  //     } else {
+  //       console.log('Error fetching user information:', response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.log('Error fetching user information:', error);
+  //   }
+  // };
 
   return (
     <div className="flex flex-col w-full max-w-full justify-center items-center h-screen ">
