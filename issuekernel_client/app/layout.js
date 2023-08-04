@@ -1,4 +1,5 @@
 import './globals.css';
+import { UserProvider } from '@/components/UserContext';
 
 // import { Inter, Roboto_Mono } from 'next/font/google';
 
@@ -13,10 +14,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <div className="main">
-          <div className="gradient"></div>
-        </div>
-        <main>{children}</main>
+        <UserProvider>
+          <div className="main">
+            <div className="gradient"></div>
+          </div>
+          <main>{children}</main>
+        </UserProvider>
       </body>
     </html>
   );
