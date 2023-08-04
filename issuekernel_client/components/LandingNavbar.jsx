@@ -11,18 +11,23 @@ const LandingNavbar = () => {
   };
   return (
     // <nav className="flex justify-between items-center py-5 px-8 border-b border-nav-border gap-4">
-    <nav className="flex justify-between w-full py-5 px-5 md:px-20 gap-10">
+    <nav className="flex justify-between w-full pt-3 px-5 md:px-20 gap-10">
       <div>
         <Link href="/">
-          <Image src="/next.svg" width={115} height={43} alt="IssueKernel" />
+          <Image
+            src="/issuekernel_logo.svg"
+            width={220}
+            height={43}
+            alt="IssueKernel"
+          />
         </Link>
       </div>
       {user ? (
-        <button className="black_btn" onClick={handleLogout}>
+        <button className="black_btn max-h-10" onClick={handleLogout}>
           Logout
         </button>
       ) : (
-        <Link href="/login" className="black_btn">
+        <Link href="/login" className="black_btn max-h-10">
           Login
         </Link>
       )}
