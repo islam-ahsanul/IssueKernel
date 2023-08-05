@@ -27,7 +27,7 @@ const LandingNavbar = () => {
           Logout
         </button>
       ) : (
-        <Link href="/login" className="black_btn max-h-10">
+        <Link href="/login" className="black_btn max-h-10 hover:bg-transparent">
           Login
         </Link>
       )}
