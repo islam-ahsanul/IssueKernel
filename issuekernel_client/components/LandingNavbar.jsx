@@ -19,6 +19,7 @@ const LandingNavbar = () => {
             width={220}
             height={43}
             alt="IssueKernel"
+            className="transition-all hover:scale-125 hover:ease-linear duration-150"
           />
         </Link>
       </div>
@@ -27,7 +28,10 @@ const LandingNavbar = () => {
           Logout
         </button>
       ) : (
-        <Link href="/login" className="black_btn max-h-10 hover:bg-transparent">
+        <Link
+          href="/login"
+          className="black_btn max-h-10 hover:bg-transparent hover:border-1 transition-transform hover:scale-125 motion-reduce:transform-none"
+        >
           Login
         </Link>
       )}
@@ -36,3 +40,4 @@ const LandingNavbar = () => {
 };
 
 export default LandingNavbar;
+// border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100
