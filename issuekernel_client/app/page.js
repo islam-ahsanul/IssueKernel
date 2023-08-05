@@ -28,12 +28,15 @@ export default function Home() {
     // </section>
     <>
       <LandingNavbar />
-      <section className="flex-center flex-col paddings m-15">
-        <h1>
+      <section className="flex flex-center flex-col paddings mt-15 mx-20">
+        <h1 className="font-nunito font-extrabold text-5xl text-black tracking-wide text-left blue_gradient">
           Step into a world of organized projects and efficient issue resolution
           with IssueKernel.
         </h1>
-        <h2>Login State</h2>
+        <h1 className="font-mono font-semibold text-xl text-black text-center mx-16 my-5">
+          Harmonizes user experiences and developer expertise, a fusion that
+          powers effective solutions.
+        </h1>
         <h2>Login req</h2>
         <h2>or</h2>
         <h2>Signup req</h2>
