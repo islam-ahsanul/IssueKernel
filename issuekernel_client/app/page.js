@@ -29,7 +29,10 @@ export default function Home() {
     <>
       <LandingNavbar />
       <section className="flex-center flex-col paddings m-15">
-        <h1>Intro Text!!!</h1>
+        <h1>
+          Step into a world of organized projects and efficient issue resolution
+          with IssueKernel.
+        </h1>
         <h2>Login State</h2>
         <h2>Login req</h2>
         <h2>or</h2>
