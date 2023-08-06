@@ -22,6 +22,10 @@ export default function Home() {
 
   return (
     <>
+      {/* will move the gradient div to root later */}
+      <div className="main">
+        <div className="gradient"></div>
+      </div>
       <LandingNavbar />
       <section className="flex flex-center flex-col paddings mt-15 mx-20">
         <h1 className="font-mono font-extrabold text-5xl text-black tracking-wide text-left blue_gradient transition-all hover:scale-105 hover:ease-linear duration-150">

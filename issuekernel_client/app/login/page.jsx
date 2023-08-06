@@ -81,6 +81,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col w-full max-w-full justify-center items-center h-screen ">
+      {/* will move the gradient div to root later */}
       <div className="main">
         <div className="gradient"></div>
       </div>
