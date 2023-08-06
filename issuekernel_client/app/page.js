@@ -28,7 +28,7 @@ export default function Home() {
       </div>
       <LandingNavbar />
       <section className="flex flex-center flex-col paddings mt-15 mx-20">
-        <h1 className="font-mono font-extrabold text-5xl text-black tracking-wide text-left blue_gradient transition-all hover:scale-105 hover:ease-linear duration-150">
+        <h1 className="font-mono font-extrabold text-5xl text-black tracking-wide text-left purple_gradient transition-all hover:scale-105 hover:ease-linear duration-150">
           Step into a world of organized projects and efficient issue resolution
           with IssueKernel.
         </h1>

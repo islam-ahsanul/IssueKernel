@@ -120,6 +120,16 @@ main {
 .blue_gradient {
   @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
 }
+.purple_gradient {
+  @apply bg-gradient-to-r from-purple-800 to-violet-400 bg-clip-text text-transparent;
+}
+.metal_gradient {
+  @apply bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200 bg-clip-text text-transparent;
+}
+.midnight_gradient {
+  @apply bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900 bg-clip-text text-transparent;
+}
+
 /* description text */
 .desc {
   @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;

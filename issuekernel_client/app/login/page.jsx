@@ -90,7 +90,7 @@ const Login = () => {
         className="w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
         <h1 className="head_text text-center">
-          <span className="blue_gradient">Login</span>
+          <span className="text-sky-500">Login</span>
         </h1>
         <div className="mb-1">
           <label
@@ -128,7 +128,7 @@ const Login = () => {
         </div>
         <button
           type="submit"
-          className="font-nunito w-full bg-black text-white py-2 px-4 rounded-full hover:bg-indigo-600"
+          className="font-nunito w-full bg-black text-white py-2 px-4 rounded-full hover:bg-sky-500"
         >
           {submitting ? 'Loging in...' : 'Login'}
         </button>
@@ -136,7 +136,7 @@ const Login = () => {
           Don't have account? Please{' '}
           <Link
             href="/register"
-            className="text-black font-extrabold hover:underline hover:text-sky-600"
+            className="text-black font-extrabold hover:underline hover:text-sky-600 transition-all hover:translate-x-1"
           >
             Create Account
           </Link>

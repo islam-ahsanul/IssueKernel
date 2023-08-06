@@ -50,7 +50,7 @@ const Register = () => {
         className="w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
         <h1 className="head_text text-center">
-          <span className="blue_gradient">Create Account</span>
+          <span className="text-sky-500">Create Account</span>
         </h1>
         <div className="mb-1">
           <label
@@ -120,7 +120,7 @@ const Register = () => {
         </div>
         <button
           type="submit"
-          className="font-nunito w-full bg-black text-white py-2 px-4 rounded-full hover:bg-indigo-600"
+          className="font-nunito w-full bg-black text-white py-2 px-4 rounded-full hover:bg-sky-500"
         >
           {submitting ? 'Creating Accout...' : 'Create Account'}
         </button>
@@ -128,7 +128,7 @@ const Register = () => {
           Already have an account? Please{' '}
           <Link
             href="/login"
-            className="text-black font-extrabold hover:underline hover:text-sky-600"
+            className="text-black font-extrabold hover:underline hover:text-sky-500 transition-all hover:translate-x-1"
           >
             Login
           </Link>
