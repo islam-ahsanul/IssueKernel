@@ -3,6 +3,7 @@ import Image from 'next/image';
 import LandingNavbar from '@/components/LandingNavbar';
 import { useContext, useEffect } from 'react';
 import { useUser } from '@/components/UserContext';
+import VisitorLanding from '@/components/VisitorLanding';
 
 export default function Home() {
   const { user, setUser } = useUser();
@@ -22,25 +23,12 @@ export default function Home() {
 
   return (
     <>
-      {/* will move the gradient div to root later */}
       <div className="main">
         <div className="gradient"></div>
       </div>
       <LandingNavbar />
-      <section className="flex flex-center flex-col paddings mt-15 mx-20">
-        <h1 className="font-mono font-extrabold text-5xl text-black tracking-wide text-left purple_gradient transition-all hover:scale-105 hover:ease-linear duration-150">
-          Step into a world of organized projects and efficient issue resolution
-          with IssueKernel.
-        </h1>
-        <h1 className="font-mono font-semibold text-xl text-black text-center mx-16 mt-20 mb-11 ">
-          Harmonizes user experiences and developer expertise, a fusion that
-          powers effective solutions.
-        </h1>
-        <h2>Login req</h2>
-        <h2>or</h2>
-        <h2>Signup req</h2>
-        {user ? <h3>{user.full_name}</h3> : <h3>NOT LOGGED IN</h3>}
-      </section>
+
+      {user ? <h3>{user.full_name}</h3> : <VisitorLanding />}
     </>
   );
 }
