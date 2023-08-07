@@ -5,6 +5,7 @@ import { useUser } from './UserContext';
 
 const LandingNavbar = () => {
   const { user, setUser } = useUser();
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     setUser(null);
@@ -24,7 +25,10 @@ const LandingNavbar = () => {
         </Link>
       </div>
       {user ? (
-        <button className="black_btn max-h-10" onClick={handleLogout}>
+        <button
+          className="black_btn max-h-10 hover:bg-transparent hover:border-1 transition-transform hover:scale-125 motion-reduce:transform-none"
+          onClick={handleLogout}
+        >
           Logout
         </button>
       ) : (

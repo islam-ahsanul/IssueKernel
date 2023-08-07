@@ -15,7 +15,7 @@ const VisitorLanding = () => {
         </div>
         <Link
           href="/register"
-          className="bg-violet-900 px-5 py-2 text-2xl text-center rounded-full text-white font-nunito m-6 font-semibold hover:bg-transparent hover:text-violet-900 border border-violet-900 transition-transform hover:scale-110 motion-reduce:transform-none"
+          className="bg-violet-900 px-5 py-2 text-2xl text-center rounded-full text-white font-nunito m-6 font-normal hover:bg-transparent hover:text-violet-900 border border-violet-900 transition-transform hover:scale-110 motion-reduce:transform-none"
         >
           Create Account
         </Link>

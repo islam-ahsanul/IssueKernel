@@ -4,6 +4,7 @@ import LandingNavbar from '@/components/LandingNavbar';
 import { useContext, useEffect } from 'react';
 import { useUser } from '@/components/UserContext';
 import VisitorLanding from '@/components/VisitorLanding';
+import SignedLanding from '@/components/SignedLanding';
 
 export default function Home() {
   const { user, setUser } = useUser();
@@ -28,7 +29,9 @@ export default function Home() {
       </div>
       <LandingNavbar />
 
-      {user ? <h3>{user.full_name}</h3> : <VisitorLanding />}
+      {user ? <SignedLanding email={user.email} /> : <VisitorLanding />}
     </>
   );
 }
+
+// {user ? <h3>{user.full_name}</h3> : <VisitorLanding />}
