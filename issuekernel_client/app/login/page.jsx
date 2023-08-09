@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -28,7 +29,8 @@ const Login = () => {
       if (response.status === 200) {
         // Login successful
         const data = await response.text();
-        localStorage.setItem('token', data);
+        //! localStorage.setItem('token', data);
+        Cookies.set('token', data, { secure: true, sameSite: 'strict' });
         console.log('Login success:', data);
         // You can handle successful login, redirect the user, etc.
         // fetchUserInfo(data);

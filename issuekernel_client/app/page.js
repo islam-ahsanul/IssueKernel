@@ -1,23 +1,21 @@
 'use client';
 import Image from 'next/image';
+import Cookies from 'js-cookie';
 import LandingNavbar from '@/components/LandingNavbar';
-import { useContext, useEffect } from 'react';
-import { useUser } from '@/components/UserContext';
+import { useContext, useEffect, useState } from 'react';
 import VisitorLanding from '@/components/VisitorLanding';
 import SignedLanding from '@/components/SignedLanding';
 
 export default function Home() {
-  const { user, setUser } = useUser();
+  const [user, setUser] = useState();
 
   useEffect(() => {
     // Get the token from localStorage
-    const token = localStorage.getItem('token');
-
+    //! const token = localStorage.getItem('token');
+    const token = Cookies.get('token');
     if (token) {
       // Decode the token and extract user information
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
-
-      // Set the user in context
       setUser(decodedToken);
     }
   }, []);
@@ -27,11 +25,9 @@ export default function Home() {
       <div className="main">
         <div className="gradient"></div>
       </div>
-      <LandingNavbar />
+      <LandingNavbar user={user} setUser={setUser} />
 
       {user ? <SignedLanding email={user.email} /> : <VisitorLanding />}
     </>
   );
 }
-
-// {user ? <h3>{user.full_name}</h3> : <VisitorLanding />}

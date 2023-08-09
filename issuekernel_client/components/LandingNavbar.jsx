@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useUser } from './UserContext';
+import Cookies from 'js-cookie';
 
-const LandingNavbar = () => {
-  const { user, setUser } = useUser();
-
+const LandingNavbar = ({ user, setUser }) => {
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    //! localStorage.removeItem('token');
+    Cookies.remove('token');
     setUser(null);
   };
   return (
