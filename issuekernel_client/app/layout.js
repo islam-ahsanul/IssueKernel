@@ -1,4 +1,7 @@
 import './globals.css';
+import React from 'react';
+import { UserSessionContextProvider } from './Context/session';
+import { useUserSession } from './Context/session';
 
 // import { Inter, Roboto_Mono } from 'next/font/google';
 
@@ -17,7 +20,9 @@ export default function RootLayout({ children }) {
         {/* <div className="main">
             <div className="gradient"></div>
           </div> */}
-        <main>{children}</main>
+        <main>
+          <UserSessionContextProvider>{children}</UserSessionContextProvider>
+        </main>
       </body>
     </html>
   );

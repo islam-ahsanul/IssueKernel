@@ -5,9 +5,11 @@ import LandingNavbar from '@/components/LandingNavbar';
 import { useContext, useEffect, useState } from 'react';
 import VisitorLanding from '@/components/VisitorLanding';
 import SignedLanding from '@/components/SignedLanding';
+import { useUserSession } from './Context/session';
 
 export default function Home() {
   const [user, setUser] = useState();
+  const { userSession, setUserSession } = useUserSession();
 
   useEffect(() => {
     // Get the token from localStorage
@@ -18,6 +20,8 @@ export default function Home() {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUser(decodedToken);
     }
+
+    setUserSession('Hoise');
   }, []);
 
   return (
@@ -28,6 +32,7 @@ export default function Home() {
       <LandingNavbar user={user} setUser={setUser} />
 
       {user ? <SignedLanding email={user.email} /> : <VisitorLanding />}
+      {userSession ? <p>{userSession}</p> : <p>hoynai</p>}
     </>
   );
 }
