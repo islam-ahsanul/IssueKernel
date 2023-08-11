@@ -1,7 +1,7 @@
+'use client';
 import './globals.css';
 import React from 'react';
-import { UserSessionContextProvider } from './Context/session';
-import { useUserSession } from './Context/session';
+import { SessionProvider } from 'next-auth/react';
 
 // import { Inter, Roboto_Mono } from 'next/font/google';
 
@@ -12,17 +12,17 @@ export const metadata = {
   description: 'An issue tracker app!',
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, session }) {
   return (
     <html lang="en">
       <body>
-        <h1>Hello</h1>
-        {/* <div className="main">
+        <SessionProvider session={session}>
+          <h1>Hello</h1>
+          {/* <div className="main">
             <div className="gradient"></div>
           </div> */}
-        <main>
-          <UserSessionContextProvider>{children}</UserSessionContextProvider>
-        </main>
+          <main>{children}</main>
+        </SessionProvider>
       </body>
     </html>
   );

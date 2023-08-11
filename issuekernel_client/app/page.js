@@ -1,38 +1,41 @@
 'use client';
 import Image from 'next/image';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import LandingNavbar from '@/components/LandingNavbar';
 import { useContext, useEffect, useState } from 'react';
 import VisitorLanding from '@/components/VisitorLanding';
 import SignedLanding from '@/components/SignedLanding';
-import { useUserSession } from './Context/session';
+import { useSession } from 'next-auth/react';
 
 export default function Home() {
-  const [user, setUser] = useState();
-  const { userSession, setUserSession } = useUserSession();
+  //! const [user, setUser] = useState();
 
-  useEffect(() => {
-    // Get the token from localStorage
-    //! const token = localStorage.getItem('token');
-    const token = Cookies.get('token');
-    if (token) {
-      // Decode the token and extract user information
-      const decodedToken = JSON.parse(atob(token.split('.')[1]));
-      setUser(decodedToken);
-    }
+  //! useEffect(() => {
+  // Get the token from localStorage
+  //! const token = localStorage.getItem('token');
+  //! const token = Cookies.get('token');
+  //! if (token) {
+  // Decode the token and extract user information
+  //! const decodedToken = JSON.parse(atob(token.split('.')[1]));
+  //! setUser(decodedToken);
+  //!  }
 
-    setUserSession('Hoise');
-  }, []);
+  //! setUserSession('Hoise');
+  //!  }, []);
 
+  const { data: session } = useSession();
   return (
     <>
       <div className="main">
         <div className="gradient"></div>
       </div>
-      <LandingNavbar user={user} setUser={setUser} />
+      <LandingNavbar />
 
-      {user ? <SignedLanding email={user.email} /> : <VisitorLanding />}
-      {userSession ? <p>{userSession}</p> : <p>hoynai</p>}
+      {session?.user ? (
+        <SignedLanding email="test13@test.com" />
+      ) : (
+        <VisitorLanding />
+      )}
     </>
   );
 }
