@@ -11,77 +11,6 @@ const Login = ({ searchParams }) => {
   const router = useRouter();
 
   const { data: session } = useSession();
-  // !  OLD login
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   setSubmitting(true);
-
-  //   try {
-  //     const response = await fetch('http://localhost:8080/api/users/login', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         email,
-  //         password,
-  //       }),
-  //     });
-
-  //     if (response.status === 200) {
-  //       // Login successful
-  //       const data = await response.text();
-  //       //! localStorage.setItem('token', data);
-  //       Cookies.set('token', data, { secure: true, sameSite: 'strict' });
-  //       console.log('Login success:', data);
-  //       // You can handle successful login, redirect the user, etc.
-  //       // fetchUserInfo(data);
-  //       router.push('/');
-  //     } else if (response.status === 401) {
-  //       console.log('Invalid credentials');
-  //       // Show an error message to the user, for example:
-  //       // setError('Invalid email or password');
-  //     } else {
-  //       // Handle other error scenarios (e.g., server errors)
-  //       console.log('Unexpected error:', response.statusText);
-  //       // Show a generic error message to the user, for example:
-  //       // setError('An unexpected error occurred');
-  //     }
-  //   } catch (error) {
-  //     console.log('errrr login');
-  //     console.log(error);
-  //   } finally {
-  //     setSubmitting(false);
-  //   }
-  // };
-  //! END Old login
-  //~ Fetch User block
-  // const fetchUserInfo = async (token) => {
-  //   try {
-  //     const decodedToken = JSON.parse(atob(token.split('.')[1]));
-  //     const email = decodedToken.email;
-
-  //     const response = await fetch(
-  //       `http://localhost:8080/api/users/email/${email}`,
-  //       {
-  //         method: 'GET',
-  //         headers: {
-  //           Authorization: token,
-  //         },
-  //       }
-  //     );
-
-  //     if (response.status === 200) {
-  //       const userInfo = await response.json();
-  //       // User info from token
-  //       console.log('User Info:', userInfo);
-  //     } else {
-  //       console.log('Error fetching user information:', response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.log('Error fetching user information:', error);
-  //   }
-  // };
 
   //* NEW !
 
@@ -116,7 +45,6 @@ const Login = ({ searchParams }) => {
 
   return (
     <div className="flex flex-col w-full max-w-full justify-center items-center h-screen ">
-      {/* will move the gradient div to root later */}
       <div className="main">
         <div className="gradient"></div>
       </div>

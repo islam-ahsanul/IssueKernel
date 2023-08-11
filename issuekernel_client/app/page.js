@@ -8,24 +8,9 @@ import SignedLanding from '@/components/SignedLanding';
 import { useSession } from 'next-auth/react';
 
 export default function Home() {
-  //! const [user, setUser] = useState();
-
-  //! useEffect(() => {
-  // Get the token from localStorage
-  //! const token = localStorage.getItem('token');
-  //! const token = Cookies.get('token');
-  //! if (token) {
-  // Decode the token and extract user information
-  //! const decodedToken = JSON.parse(atob(token.split('.')[1]));
-  //! setUser(decodedToken);
-  //!  }
-
-  //! setUserSession('Hoise');
-  //!  }, []);
-
   const { data: session } = useSession();
 
-  console.log({ session });
+  // console.log({ session });
 
   return (
     <>

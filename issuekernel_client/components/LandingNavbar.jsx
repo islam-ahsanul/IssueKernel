@@ -5,15 +5,9 @@ import { useSession, signOut, signIn } from 'next-auth/react';
 // import Cookies from 'js-cookie';
 
 const LandingNavbar = () => {
-  //! const handleLogout = () => {
-  //! localStorage.removeItem('token'); //!
-  //! Cookies.remove('token');
-  //! setUser(null);
-  //! };
-
   const { data: session } = useSession();
+  // console.log(`🌳Current Session: ${session}`);
 
-  console.log(`🌳Current Session: ${session}`);
   return (
     // <nav className="flex justify-between items-center py-5 px-8 border-b border-nav-border gap-4">
     <nav className="flex justify-between w-full pt-3 px-5 md:px-20 gap-10">
@@ -48,4 +42,3 @@ const LandingNavbar = () => {
 };
 
 export default LandingNavbar;
-// border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100

@@ -17,7 +17,6 @@ export default function RootLayout({ children, session }) {
     <html lang="en">
       <body>
         <SessionProvider session={session}>
-          <h1>Hello</h1>
           {/* <div className="main">
             <div className="gradient"></div>
           </div> */}

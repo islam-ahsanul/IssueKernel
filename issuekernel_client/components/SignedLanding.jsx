@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 const SignedLanding = () => {
   const { data: session } = useSession();
   const [account, setAccout] = useState([]);
+
   useEffect(() => {
     const fetchUserInfo = async (email) => {
       try {
