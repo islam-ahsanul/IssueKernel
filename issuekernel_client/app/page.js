@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image';
 // import Cookies from 'js-cookie';
 import LandingNavbar from '@/components/LandingNavbar';
@@ -24,6 +25,7 @@ export default function Home() {
   //!  }, []);
 
   const { data: session } = useSession();
+
   return (
     <>
       <div className="main">
@@ -32,7 +34,7 @@ export default function Home() {
       <LandingNavbar />
 
       {session?.user ? (
-        <SignedLanding email="test13@test.com" />
+        <SignedLanding email={session?.user.email} />
       ) : (
         <VisitorLanding />
       )}

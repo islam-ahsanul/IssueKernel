@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 const SignedLanding = ({ email }) => {
+  const { data: session } = useSession();
   const [account, setAccout] = useState([]);
   useEffect(() => {
     const fetchUserInfo = async (email) => {
@@ -10,7 +12,8 @@ const SignedLanding = ({ email }) => {
           {
             method: 'GET',
             headers: {
-              Authorization: email,
+              Authorization: `bearer ${session?.user.accessToken}`,
+              // Authorization: email,
             },
           }
         );
