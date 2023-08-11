@@ -46,9 +46,9 @@ export const authOptions = {
     strategy: 'jwt',
   },
 
-  // pages: {
-  //   signIn: '/login',
-  // },
+  pages: {
+    signIn: '/login',
+  },
 };
 
 export default NextAuth(authOptions);

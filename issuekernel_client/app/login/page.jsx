@@ -2,14 +2,15 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
-import { signIn } from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
+
+  const { data: session } = useSession();
 
   // !  OLD login
   // const handleLogin = async (e) => {
@@ -83,14 +84,33 @@ const Login = () => {
   //   }
   // };
 
-  const onSubmit = async () => {
-    const result = await signIn('credentials', {
-      email,
-      password,
-      redirect: true,
-      callbackUrl: '/',
-    });
-    // result();
+  if (session) {
+    router.replace('/');
+    return null;
+  }
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    try {
+      // Call the API to authenticate the user
+      const result = await signIn('credentials', {
+        email,
+        password,
+        redirect: true,
+        callbackUrl: '/',
+      });
+
+      // Handle the result (you can add error handling here)
+      if (result?.error) {
+        console.error('Sign-in error:', result.error);
+      }
+    } catch (error) {
+      console.error('An error occurred during login:', error);
+    }
+
+    setSubmitting(false);
   };
 
   return (
@@ -100,7 +120,7 @@ const Login = () => {
         <div className="gradient"></div>
       </div>
       <form
-        onSubmit={onSubmit}
+        onSubmit={handleSignIn}
         className="w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
         <h1 className="head_text text-center">
