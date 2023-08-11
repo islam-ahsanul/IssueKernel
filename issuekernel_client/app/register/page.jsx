@@ -41,10 +41,9 @@ const Register = () => {
 
   return (
     <div className="flex flex-col w-full max-w-full justify-center items-center h-screen ">
-      {/* will move the gradient div to root later */}
-      <div className="main">
+      {/* <div className="main">
         <div className="gradient"></div>
-      </div>
+      </div> */}
       <form
         onSubmit={createAccount}
         className="w-full max-w-2xl flex flex-col gap-7 glassmorphism"

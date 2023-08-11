@@ -45,9 +45,9 @@ const Login = ({ searchParams }) => {
 
   return (
     <div className="flex flex-col w-full max-w-full justify-center items-center h-screen ">
-      <div className="main">
+      {/* <div className="main">
         <div className="gradient"></div>
-      </div>
+      </div> */}
 
       <form
         onSubmit={handleSignIn}

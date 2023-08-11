@@ -1,0 +1,21 @@
+import TopBar from '@/components/TopBar';
+import LeftSidebar from '@/components/LeftSidebar';
+
+export const metadata = {
+  title: 'Admin Panel',
+  description: 'An issue tracker app!',
+};
+
+const AdminLayout = ({ children }) => {
+  return (
+    <main>
+      <TopBar />
+      <LeftSidebar />
+      <section className="main-container">
+        <div className="w-full max-w-4xl">{children}</div>
+      </section>
+    </main>
+  );
+};
+
+export default AdminLayout;

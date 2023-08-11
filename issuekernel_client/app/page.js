@@ -14,9 +14,9 @@ export default function Home() {
 
   return (
     <>
-      <div className="main">
+      {/* <div className="main">
         <div className="gradient"></div>
-      </div>
+      </div> */}
       <LandingNavbar />
 
       {session?.user ? <SignedLanding /> : <VisitorLanding />}
