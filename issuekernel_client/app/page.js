@@ -25,6 +25,8 @@ export default function Home() {
 
   const { data: session } = useSession();
 
+  console.log({ session });
+
   return (
     <>
       <div className="main">
