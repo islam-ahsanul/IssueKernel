@@ -4,14 +4,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useSession, signIn } from 'next-auth/react';
 
-const Login = () => {
+const Login = ({ searchParams }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 
   const { data: session } = useSession();
-
   // !  OLD login
   // const handleLogin = async (e) => {
   //   e.preventDefault();
@@ -84,10 +83,12 @@ const Login = () => {
   //   }
   // };
 
-  if (session) {
-    router.replace('/');
-    return null;
-  }
+  //* NEW !
+
+  // if (session) {
+  //   router.replace('/');
+  //   return null;
+  // }
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -119,10 +120,12 @@ const Login = () => {
       <div className="main">
         <div className="gradient"></div>
       </div>
+
       <form
         onSubmit={handleSignIn}
         className="w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
+        {searchParams?.message && <p>{searchParams?.message}</p>}
         <h1 className="head_text text-center">
           <span className="text-sky-500">Login</span>
         </h1>
