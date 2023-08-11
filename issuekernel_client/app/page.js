@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-// import Cookies from 'js-cookie';
 import LandingNavbar from '@/components/LandingNavbar';
 import { useContext, useEffect, useState } from 'react';
 import VisitorLanding from '@/components/VisitorLanding';
@@ -33,11 +32,7 @@ export default function Home() {
       </div>
       <LandingNavbar />
 
-      {session?.user ? (
-        <SignedLanding email={session?.user.email} />
-      ) : (
-        <VisitorLanding />
-      )}
+      {session?.user ? <SignedLanding /> : <VisitorLanding />}
     </>
   );
 }

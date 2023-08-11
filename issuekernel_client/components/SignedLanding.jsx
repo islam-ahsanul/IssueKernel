@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-const SignedLanding = ({ email }) => {
+
+const SignedLanding = () => {
   const { data: session } = useSession();
   const [account, setAccout] = useState([]);
   useEffect(() => {
@@ -31,13 +32,16 @@ const SignedLanding = ({ email }) => {
         console.log('Error fetching user information:', error);
       }
     };
-    fetchUserInfo(email);
+    fetchUserInfo(session?.user.email);
   }, []);
+
   return (
     <>
       <section className="flex-center flex-col paddings mt-15 mx-20">
         <h1 className="font-mono font-extrabold text-5xl text-black tracking-wide text-left purple_gradient">
           Welcome, {account.full_name}
+          Your ID: {account.user_id}
+          Your Email: {account.email}
         </h1>
         <div className=" font-nunito mt-14 font-semibold text-2xl text-center max-w-xl align-middle">
           You are signed in as {account.role}
