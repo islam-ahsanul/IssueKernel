@@ -57,14 +57,24 @@ public class UserController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody UserLoginRequest loginRequest){
+    public ResponseEntity<Object> loginUser(@RequestBody UserLoginRequest loginRequest){
         String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
 
         if (userService.validateUserCredentials(email, password)) {
             User user = userService.getUserByEmail(email);
             String token = generateJwtToken(email, user.getFull_name());
-            return new ResponseEntity<>(token, HttpStatus.OK);
+
+
+            // Response Object
+            LoginResponse loginResponse = new LoginResponse();
+            loginResponse.setUser_id(user.getUser_id());
+            loginResponse.setFull_name(user.getFull_name());
+            loginResponse.setEmail(email);
+            loginResponse.setRole(user.getRole());
+            loginResponse.setAccessToken(token);
+//            return new ResponseEntity<>(token, HttpStatus.OK);
+            return new ResponseEntity<>(loginResponse, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
         }

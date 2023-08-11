@@ -29,10 +29,10 @@ export const authOptions = {
             password,
           }),
         });
-        const user = await res.text();
+        const user = await res.json();
 
         if (res.ok && user) {
-          console.log(`${user}::: yeyeys`);
+          console.log(`${JSON.stringify(user)}::: yeyeys`);
           return user;
         } else {
           console.log('nonono');
@@ -41,6 +41,17 @@ export const authOptions = {
       },
     }),
   ],
+
+  // callbacks: {
+  //   async jwt({ token, user }) {
+  //     return { ...token, ...user };
+  //   },
+
+  //   async session({ session, token, user }) {
+  //     session.user = token;
+  //     return session;
+  //   },
+  // },
 
   session: {
     strategy: 'jwt',

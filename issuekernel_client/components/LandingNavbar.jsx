@@ -12,6 +12,8 @@ const LandingNavbar = () => {
   //! };
 
   const { data: session } = useSession();
+
+  console.log(`🌳Current Session: ${session}`);
   return (
     // <nav className="flex justify-between items-center py-5 px-8 border-b border-nav-border gap-4">
     <nav className="flex justify-between w-full pt-3 px-5 md:px-20 gap-10">
