@@ -233,7 +233,7 @@ main {
 @layer components {
   /* main */
   .main-container {
-    @apply flex min-h-screen flex-1 flex-col items-center bg-black px-6 pb-10 pt-28 max-md:pb-32 sm:px-10;
+    @apply flex min-h-screen flex-1 flex-col items-center bg-black px-6 pb-10 pt-16 max-md:pb-32 sm:px-10;
   }
 
   .head-text_new {
@@ -265,7 +265,7 @@ main {
 
   /* User card */
   .user-card {
-    @apply flex flex-col justify-between gap-4 max-xs:rounded-xl max-xs:bg-dark-3 max-xs:p-4 xs:flex-row xs:items-center;
+    @apply flex flex-col justify-between gap-4 rounded-xl bg-dark-4 p-4 xs:flex-row xs:items-center;
   }
 
   .user-card_avatar {
