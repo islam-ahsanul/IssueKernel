@@ -20,6 +20,20 @@ export default withAuth(
       return NextResponse.rewrite(
         new URL('/login?message=You are not Authorized!', req.url)
       );
+    if (
+      req.nextUrl.pathname.startsWith('/developer') &&
+      req.nextauth.token?.role !== 'Developer'
+    )
+      return NextResponse.rewrite(
+        new URL('/login?message=You are not Authorized!', req.url)
+      );
+    if (
+      req.nextUrl.pathname.startsWith('/consumer') &&
+      req.nextauth.token?.role !== 'Consumer'
+    )
+      return NextResponse.rewrite(
+        new URL('/login?message=You are not Authorized!', req.url)
+      );
   },
   {
     callbacks: {
