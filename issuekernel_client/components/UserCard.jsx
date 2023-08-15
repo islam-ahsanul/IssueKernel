@@ -37,7 +37,7 @@ const UserCard = ({ id, name, email, role }) => {
           Select Role:
         </label> */}
         {role === 'Admin' ? (
-          <div className="block w-[150px] m-1 py-2 px-3 rounded-md bg-primary-500 text-white ">
+          <div className="block w-[150px] max-h-[39px]  p-2  rounded-md bg-primary-500 text-white">
             Admin
           </div>
         ) : (
@@ -46,7 +46,6 @@ const UserCard = ({ id, name, email, role }) => {
             className="block w-[150px]  p-2  rounded-md bg-primary-500 text-white "
             value={selectedRole}
             onChange={(e) => handleRoleChange(e.target.value)}
-            style={{ marginBottom: '10px' }}
           >
             <option value="Manager" className="bg-dark-2">
               Manager
