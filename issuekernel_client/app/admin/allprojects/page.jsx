@@ -162,7 +162,7 @@ const AllProjects = () => {
             id={project.project_id}
             title={project.project_name}
             desc={project.project_desc}
-            path={`manager/allprojects/${project.project_id}`}
+            path={`/admin/allprojects/${project.project_id}`}
           />
         ))}
       </div>
