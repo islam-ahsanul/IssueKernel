@@ -21,11 +21,11 @@ const AllProjects = () => {
             <Button variant="outline">Edit Profile</Button>
           </div>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] bg-dark-2 text-white">
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
+            <DialogTitle>Create Project</DialogTitle>
+            <DialogDescription className="text-light-3">
+              Enter project details. Click save when you're done.
             </DialogDescription>
           </DialogHeader>
           {/* Form Start */}
@@ -46,12 +46,12 @@ const AllProjects = () => {
             {/* Form end */}
 
             <label>
-              <span className="font-semibold text-base text-gray-700">
+              <span className="font-semibold text-base text-white">
                 Project Title
               </span>
 
               <input
-                className="form_input"
+                className="w-full flex rounded-lg mt-2 p-3 text-base text-gray-800 outline-0 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-gray-900"
                 // value={post.tag}
                 // onChange={(e) =>
                 //   setPost({
@@ -59,18 +59,18 @@ const AllProjects = () => {
                 //     tag: e.target.value,
                 //   })
                 // }
-                placeholder="#tag"
+                placeholder="Enter Project Title"
                 required
               ></input>
             </label>
 
             <label>
-              <span className=" font-semibold text-base text-gray-700">
+              <span className=" font-semibold text-base text-white">
                 Project Description
               </span>
 
               <textarea
-                className="form_textarea"
+                className="w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-gray-900"
                 // value={post.prompt}
                 // onChange={(e) =>
                 //   setPost({
@@ -78,13 +78,15 @@ const AllProjects = () => {
                 //     prompt: e.target.value,
                 //   })
                 // }
-                placeholder="Write your prompt here..."
+                placeholder="Write project description here..."
                 required
               ></textarea>
             </label>
 
             <DialogFooter>
-              <Button type="submit">Save changes</Button>
+              <Button type="submit" className="bg-primary-500">
+                Save changes
+              </Button>
             </DialogFooter>
           </form>
         </DialogContent>
