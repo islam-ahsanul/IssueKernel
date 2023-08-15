@@ -59,6 +59,11 @@ module.exports = {
         'light-3': '#7878A3',
         'light-4': '#5C5C7B',
         'gray-1': '#697C89',
+        'steel-blue-1': '#17202A',
+        'steel-blue-2': '#1C2833',
+        'steel-blue-3': '#1B2631 ',
+        'steel-blue-4': '#212F3C ',
+        'steel-blue-5': '#06050b ',
         glassmorphism: 'rgba(16, 16, 18, 0.60)',
       },
       boxShadow: {

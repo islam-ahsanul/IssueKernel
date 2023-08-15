@@ -21,7 +21,7 @@ const AllProjects = () => {
             <Button variant="outline">Edit Profile</Button>
           </div>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px] bg-dark-2 text-white">
+        <DialogContent className="sm:max-w-[425px] bg-dark-1 text-white">
           <DialogHeader>
             <DialogTitle>Create Project</DialogTitle>
             <DialogDescription className="text-light-3">
@@ -51,7 +51,7 @@ const AllProjects = () => {
               </span>
 
               <input
-                className="w-full flex rounded-lg mt-2 p-3 text-base text-gray-800 outline-0 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-gray-900"
+                className="w-full flex rounded-xl mt-2 p-3 text-base text-gray-800 outline-0 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-gray-800/30"
                 // value={post.tag}
                 // onChange={(e) =>
                 //   setPost({
@@ -70,7 +70,7 @@ const AllProjects = () => {
               </span>
 
               <textarea
-                className="w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-gray-900"
+                className="w-full flex rounded-xl h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-gray-800/30"
                 // value={post.prompt}
                 // onChange={(e) =>
                 //   setPost({
