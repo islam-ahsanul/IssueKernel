@@ -34,6 +34,10 @@ public class UserService {
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
 
     // Additional service methods as per your requirement
     public boolean validateUserCredentials(String email, String password) {

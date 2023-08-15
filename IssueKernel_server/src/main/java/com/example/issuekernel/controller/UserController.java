@@ -18,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
@@ -91,6 +92,24 @@ public class UserController {
         User savedUser = userService.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
+
+    @PutMapping("/{user_id}/role")
+    public ResponseEntity<User> updateUserRole(
+            @PathVariable("user_id") Integer userId,
+            @RequestBody Map<String, String> roleRequest
+    ) {
+        String newRole = roleRequest.get("role");
+        User user = userService.getUserById(userId);
+
+        if (user != null) {
+            user.setRole(newRole);
+            userService.saveUser(user);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 
 
