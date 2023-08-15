@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children, session }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-dark-1">
         <SessionProvider session={session}>
           {/* <div className="main">
             <div className="gradient"></div>

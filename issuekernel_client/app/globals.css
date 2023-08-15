@@ -101,6 +101,9 @@ main {
   .black_btn {
     @apply rounded-full border border-black border-2 bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center mt-2;
   }
+  .white_btn {
+    @apply rounded-full border border-white border-2 bg-white py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center mt-2;
+  }
 
   .outline_btn {
     @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
@@ -265,7 +268,7 @@ main {
 
   /* User card */
   .user-card {
-    @apply flex flex-col justify-between gap-4 rounded-xl bg-dark-2 p-4 xs:flex-row xs:items-center;
+    @apply flex flex-col justify-between gap-4 rounded-xl bg-gray-800/30 p-4 xs:flex-row xs:items-center;
   }
 
   .user-card_avatar {

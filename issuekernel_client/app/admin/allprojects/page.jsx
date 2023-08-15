@@ -9,6 +9,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 const AllProjects = () => {
   const handleSubmit = () => {};
@@ -18,7 +19,11 @@ const AllProjects = () => {
       <Dialog>
         <DialogTrigger asChild>
           <div className="flex justify-end ">
-            <Button variant="outline">Edit Profile</Button>
+            {/* <Button variant="outline">Create a New Project</Button> */}
+            <div className="flex gap-1 cursor-pointer bg-primary-500 p-2 rounded-xl">
+              <Image src="/create.svg" height={24} width={24} />
+              <p className="text-white">Create a new project</p>
+            </div>
           </div>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] bg-dark-1 text-white">
@@ -28,23 +33,8 @@ const AllProjects = () => {
               Enter project details. Click save when you're done.
             </DialogDescription>
           </DialogHeader>
-          {/* Form Start */}
+
           <form className="flex flex-col gap-7" onSubmit={handleSubmit}>
-            {/*<div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
-                Name
-              </Label>
-              <Input id="name" value="Pedro Duarte" className="col-span-3" />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
-                Username
-              </Label>
-              <Input id="username" value="@peduarte" className="col-span-3" />
-            </div>*/}
-
-            {/* Form end */}
-
             <label>
               <span className="font-semibold text-base text-white">
                 Project Title
