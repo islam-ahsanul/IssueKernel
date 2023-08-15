@@ -93,7 +93,7 @@ public class UserController {
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{user_id}/role")
+    @PutMapping("/{user_id}")
     public ResponseEntity<User> updateUserRole(
             @PathVariable("user_id") Integer userId,
             @RequestBody Map<String, String> roleRequest

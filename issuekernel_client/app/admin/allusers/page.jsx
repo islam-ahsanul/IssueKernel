@@ -40,6 +40,7 @@ const AllUsers = () => {
         {usersAll.map((user) => (
           <UserCard
             key={user.user_id}
+            id={user.user_id}
             name={user.full_name}
             email={user.email}
             role={user.role}
