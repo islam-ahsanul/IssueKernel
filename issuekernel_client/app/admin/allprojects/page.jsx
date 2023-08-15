@@ -7,12 +7,48 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const AllProjects = () => {
-  const handleSubmit = () => {};
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  const [formData, setFormData] = useState({
+    project_name: '',
+    project_desc: '',
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:8080/api/projects', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session?.user.accessToken}`,
+        },
+        body: JSON.stringify({
+          project_name: formData.project_name,
+          project_desc: formData.project_desc,
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Project Created 💡🌳');
+        router.push('/admin/allprojects');
+      }
+    } catch (error) {
+      console.log('errrrrr in page');
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -41,14 +77,16 @@ const AllProjects = () => {
               </span>
 
               <input
-                className="w-full flex rounded-xl mt-2 p-3 text-base text-gray-800 outline-0 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-gray-800/30"
-                // value={post.tag}
-                // onChange={(e) =>
-                //   setPost({
-                //     ...post,
-                //     tag: e.target.value,
-                //   })
-                // }
+                className="w-full flex rounded-xl mt-2 p-3 text-base text-gray-400 outline-0 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-gray-800/30"
+                type="text"
+                id="project_name"
+                value={formData.project_name}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    project_name: e.target.value,
+                  })
+                }
                 placeholder="Enter Project Title"
                 required
               ></input>
@@ -60,23 +98,26 @@ const AllProjects = () => {
               </span>
 
               <textarea
-                className="w-full flex rounded-xl h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-gray-800/30"
-                // value={post.prompt}
-                // onChange={(e) =>
-                //   setPost({
-                //     ...post,
-                //     prompt: e.target.value,
-                //   })
-                // }
+                className="w-full flex rounded-xl h-[200px] mt-2 p-3 text-sm text-gray-400 outline-0 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-gray-800/30"
+                id="project_desc"
+                value={formData.project_desc}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    project_desc: e.target.value,
+                  })
+                }
                 placeholder="Write project description here..."
                 required
               ></textarea>
             </label>
 
             <DialogFooter>
-              <Button type="submit" className="bg-primary-500">
-                Save changes
-              </Button>
+              <DialogClose asChild>
+                <Button type="submit" className="bg-primary-500">
+                  Save changes
+                </Button>
+              </DialogClose>
             </DialogFooter>
           </form>
         </DialogContent>

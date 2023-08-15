@@ -32,7 +32,7 @@ const LandingNavbar = () => {
       ) : (
         <button
           onClick={() => signIn()}
-          className="black_btn max-h-10 hover:bg-transparent hover:border-1 transition-transform hover:scale-125 motion-reduce:transform-none"
+          className="white_btn max-h-10 hover:bg-transparent hover:border-1 transition-transform hover:scale-125 motion-reduce:transform-none"
         >
           Login
         </button>
