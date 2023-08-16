@@ -268,7 +268,7 @@ main {
 
   /* User card */
   .user-card {
-    @apply flex flex-col justify-between gap-4 rounded-xl bg-gray-800/30 p-4 xs:flex-row xs:items-center;
+    @apply flex flex-col justify-between gap-4 rounded-2xl bg-gray-800/50 p-4 xs:flex-row xs:items-center;
   }
 
   .user-card_avatar {

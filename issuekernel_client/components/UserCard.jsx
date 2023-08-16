@@ -26,7 +26,7 @@ const UserCard = ({ id, name, email, role }) => {
     }
   };
   return (
-    <article className="user-card m-1.5">
+    <article className="user-card m-2.5">
       <div>
         <h3 className="text-lg font-semibold text-white">{name}</h3>
         <p className="text-gray-600">{email}</p>
