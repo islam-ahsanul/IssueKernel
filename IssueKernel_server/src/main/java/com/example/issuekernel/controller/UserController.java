@@ -3,6 +3,7 @@ package com.example.issuekernel.controller;
 
 import com.example.issuekernel.model.User;
 import com.example.issuekernel.security.UserLoginRequest;
+import com.example.issuekernel.service.DeveloperProjectService;
 import com.example.issuekernel.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -25,6 +26,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private DeveloperProjectService developerProjectService;
 
 //    @GetMapping("/")
 //    public List<User> getAllUsers(){
@@ -137,5 +140,11 @@ public class UserController {
                 .compact();
 
         return token;
+    }
+
+    @GetMapping("/developers-with-projects")
+    public ResponseEntity<List<DeveloperWithProjectDTO>> getDevelopersWithProjects() {
+        List<DeveloperWithProjectDTO> developerWithProjectDTOs = developerProjectService.getDevelopersWithProjects();
+        return new ResponseEntity<>(developerWithProjectDTOs, HttpStatus.OK);
     }
 }
