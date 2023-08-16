@@ -51,16 +51,16 @@ const Login = ({ searchParams }) => {
 
       <form
         onSubmit={handleSignIn}
-        className="w-full max-w-2xl flex flex-col gap-7 glassmorphism"
+        className="w-full max-w-2xl flex flex-col gap-7 px-10 py-8 border border-slate-700 bg-gray-800/30 rounded-3xl"
       >
         {searchParams?.message && <p>{searchParams?.message}</p>}
         <h1 className="head_text text-center">
-          <span className="text-sky-500">Login</span>
+          <span className="text-primary-500">Login</span>
         </h1>
         <div className="mb-1">
           <label
             htmlFor="email"
-            className="block font-nunito font-semibold text-gray-700 ml-1"
+            className="block font-nunito font-semibold text-white ml-1"
           >
             Email
           </label>
@@ -77,7 +77,7 @@ const Login = ({ searchParams }) => {
         <div className="mb-6">
           <label
             htmlFor="password"
-            className="block font-nunito font-semibold text-gray-700 ml-1"
+            className="block font-nunito font-semibold text-white ml-1"
           >
             Password
           </label>
@@ -93,15 +93,15 @@ const Login = ({ searchParams }) => {
         </div>
         <button
           type="submit"
-          className="font-nunito w-full bg-black text-white py-2 px-4 rounded-full hover:bg-sky-500"
+          className="font-nunito w-full bg-white text-dark-1 py-2 px-4 rounded-full hover:bg-primary-500"
         >
           {submitting ? 'Loging in...' : 'Login'}
         </button>
-        <p className="flex gap-1 justify-center font-nunito">
+        <p className="flex text-gray-400 gap-1 justify-center font-nunito">
           Don't have account? Please{' '}
           <Link
             href="/register"
-            className="text-black font-extrabold hover:underline hover:text-sky-600 transition-all hover:translate-x-1"
+            className="text-white font-extrabold hover:underline hover:text-primary-500 transition-all hover:translate-x-1"
           >
             Create Account
           </Link>

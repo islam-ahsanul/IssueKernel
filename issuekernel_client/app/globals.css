@@ -166,7 +166,7 @@ main {
   }
 
   .form_input {
-    @apply w-full flex rounded-xl mt-2 p-3 text-base text-gray-800 outline-0 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500;
+    @apply w-full flex rounded-xl mt-2 p-3 text-base text-gray-400 outline-0 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 bg-gray-800/30;
   }
 
   /* Nav Component */
