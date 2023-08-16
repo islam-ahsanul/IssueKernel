@@ -4,26 +4,33 @@ import com.example.issuekernel.model.DeveloperProject;
 import com.example.issuekernel.model.Project;
 import com.example.issuekernel.model.User;
 import com.example.issuekernel.repository.DeveloperProjectRepository;
+import com.example.issuekernel.repository.ProjectRepository;
+import com.example.issuekernel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 public class DeveloperProjectService {
+    private final DeveloperProjectRepository developerProjectRepository;
     @Autowired
-    private DeveloperProjectRepository developerProjectRepository;
+    private UserService userService;
 
-    public DeveloperProject assignDeveloperToProject(User developer, Project project) {
+    @Autowired
+    public DeveloperProjectService(DeveloperProjectRepository developerProjectRepository) {
+        this.developerProjectRepository = developerProjectRepository;
+    }
+
+    public DeveloperProject createDeveloperProject(Integer developerId) {
         DeveloperProject developerProject = new DeveloperProject();
-        developerProject.setDeveloper(developer);
-        developerProject.setProject(project);
+        User developer = userService.getUserById(developerId);// You need to fetch the User entity using the developerId
+        developerProject.setDeveloper_id(developer);
+        developerProject.setProject_id(null);
+
         return developerProjectRepository.save(developerProject);
     }
 
-    // Other methods as needed...
-    public void deleteDeveloperProject(User developer, Project project) {
-        developerProjectRepository.deleteByDeveloperAndProject(developer, project);
+    public void deleteDeveloperProject(Integer id) {
+        developerProjectRepository.deleteById(id);
     }
-
-
-
 }

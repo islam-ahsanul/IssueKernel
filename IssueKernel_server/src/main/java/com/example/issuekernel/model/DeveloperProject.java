@@ -4,27 +4,29 @@ package com.example.issuekernel.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "`dev_proj`")
+@Table(name = "dev_proj")
 public class DeveloperProject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "developer_id", referencedColumnName = "user_id")
-    private User developer;
+    private User developer_id;
 
     @ManyToOne
     @JoinColumn(name = "project_id", referencedColumnName = "project_id")
-    private Project project;
+    private Project project_id;
 
-    public DeveloperProject(Integer id, User developer, Project project) {
+    public DeveloperProject(Integer id, User developer_id, Project project_id) {
         this.id = id;
-        this.developer = developer;
-        this.project = project;
+        this.developer_id = developer_id;
+        this.project_id = project_id;
     }
 
-    public DeveloperProject() {}
+    public DeveloperProject() {
+    }
 
     public Integer getId() {
         return id;
@@ -34,20 +36,19 @@ public class DeveloperProject {
         this.id = id;
     }
 
-    public User getDeveloper() {
-        return developer;
+    public User getDeveloper_id() {
+        return developer_id;
     }
 
-    public void setDeveloper(User developer) {
-        this.developer = developer;
+    public void setDeveloper_id(User developer_id) {
+        this.developer_id = developer_id;
     }
 
-    public Project getProject() {
-        return project;
+    public Project getProject_id() {
+        return project_id;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setProject_id(Project project_id) {
+        this.project_id = project_id;
     }
 }
-
