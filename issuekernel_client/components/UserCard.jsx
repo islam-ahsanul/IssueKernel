@@ -18,24 +18,6 @@ const UserCard = ({ id, name, email, role }) => {
 
       if (response.status === 200) {
         setSelectedRole(newRole);
-        //* Adding to dev-proj table
-        if (newRole === 'Developer') {
-          const developerResponse = await fetch(
-            'http://localhost:8080/api/developer-projects',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${session?.user.accessToken}`,
-              },
-              body: JSON.stringify({ developer_id: id }),
-            }
-          );
-          if (developerResponse.status !== 201) {
-            console.log('Error adding user to developer-project table');
-          }
-        }
-        //* End
       } else {
         console.log('Error updating user role:', response.statusText);
       }
