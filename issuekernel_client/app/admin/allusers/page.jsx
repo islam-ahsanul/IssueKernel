@@ -23,9 +23,7 @@ const AllUsers = () => {
         } else {
           console.log('Error fetching user information:', response.statusText);
         }
-      } catch (error) {
-        console.log('Error fetching user information:', error);
-      }
+      } catch (error) {}
     };
     fetchAllUsrs();
   }, []);
