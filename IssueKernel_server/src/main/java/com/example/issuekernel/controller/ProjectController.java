@@ -2,6 +2,7 @@ package com.example.issuekernel.controller;
 
 import com.example.issuekernel.model.Issue;
 import com.example.issuekernel.model.Project;
+import com.example.issuekernel.model.User;
 import com.example.issuekernel.repository.ProjectRepository;
 import com.example.issuekernel.service.IssueService;
 import com.example.issuekernel.service.ProjectService;
@@ -60,5 +61,11 @@ public class ProjectController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/getmanager/availablemanagers")
+    public ResponseEntity<List<User>> getAvailableManagers() {
+        List<User> availableManagers = projectService.getAvailableManagers();
+        return new ResponseEntity<>(availableManagers, HttpStatus.OK);
     }
 }

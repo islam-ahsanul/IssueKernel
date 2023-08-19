@@ -39,4 +39,8 @@ public class ProjectService {
         }
         return null;
     }
+    public List<User> getAvailableManagers() {
+        return projectRepository.findAvailableManagers();
+    }
+
 }

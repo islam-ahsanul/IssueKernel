@@ -1,4 +1,17 @@
 'use client';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetFooter,
+  SheetClose,
+} from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+
+import ChangeManager from '@/components/changeManager';
 
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
@@ -34,7 +47,7 @@ const page = ({ params }) => {
     fetchProject();
   }, []);
 
-  console.log(projectDetails);
+  // console.log(projectDetails);
   const {
     project_id,
     project_name,
@@ -43,7 +56,7 @@ const page = ({ params }) => {
   } = projectDetails;
   // const { email, full_name } = manager;
 
-  console.log('📌📌📌');
+  // console.log('📌📌📌');
   // console.log(manager.email);
   // console.log(manager.full_name);
 
@@ -68,7 +81,7 @@ const page = ({ params }) => {
             <p className="pt-4 pb-1 px-4 text-light-3 tracking-wider">
               MANAGER
             </p>
-            <button>Change Manager</button>
+            <ChangeManager />
           </div>
           <p className="text-white">
             {manager ? `${manager.full_name}` : 'No manager assigned'}
