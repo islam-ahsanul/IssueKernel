@@ -54,7 +54,17 @@ const page = ({ params }) => {
           </div>
         </div>
 
-        <div className="bg-blue">This will be manager card</div>
+        <div className="flex flex-col bg-gray-800/50 mt-2 mb-2 rounded-3xl">
+          <div className="flex flex-row">
+            <p className="pt-4 pb-1 px-4 text-light-3 tracking-wider">
+              MANAGER
+            </p>
+            <button>Change Manager</button>
+          </div>
+          <p className="text-white">
+            {manager ? `${full_name}` : 'No manager assigned'}
+          </p>
+        </div>
         <div className="bg-orange-500">This will be devs card</div>
       </div>
     </div>
