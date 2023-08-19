@@ -33,13 +33,19 @@ const page = ({ params }) => {
 
     fetchProject();
   }, []);
+
   console.log(projectDetails);
-  const { project_name, project_desc, manager = {} } = projectDetails;
+  const {
+    project_id,
+    project_name,
+    project_desc,
+    manager = {},
+  } = projectDetails;
   // const { email, full_name } = manager;
 
   console.log('📌📌📌');
-  console.log(manager.email);
-  console.log(manager.full_name);
+  // console.log(manager.email);
+  // console.log(manager.full_name);
 
   return (
     <div className="mx-20">
