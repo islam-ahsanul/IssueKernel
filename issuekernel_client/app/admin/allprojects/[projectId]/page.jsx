@@ -35,9 +35,12 @@ const page = ({ params }) => {
   }, []);
   console.log(projectDetails);
   const { project_name, project_desc, manager = {} } = projectDetails;
-  const { email, full_name } = manager;
+  // const { email, full_name } = manager;
 
-  console.log(email);
+  console.log('📌📌📌');
+  console.log(manager.email);
+  console.log(manager.full_name);
+
   return (
     <div className="mx-20">
       <div className="flex flex-col w-full">
@@ -62,7 +65,7 @@ const page = ({ params }) => {
             <button>Change Manager</button>
           </div>
           <p className="text-white">
-            {manager ? `${full_name}` : 'No manager assigned'}
+            {manager ? `${manager.full_name}` : 'No manager assigned'}
           </p>
         </div>
         <div className="bg-orange-500">This will be devs card</div>
