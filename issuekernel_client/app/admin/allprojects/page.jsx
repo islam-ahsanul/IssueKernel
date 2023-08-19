@@ -155,7 +155,7 @@ const AllProjects = () => {
         </DialogContent>
       </Dialog>
 
-      <div className="m-24 rounded-md grid grid-cols-3 gap-12">
+      <div className="my-24 mx-14 rounded-md grid grid-cols-3 gap-12">
         {allProjects.map((project) => (
           <ProjectCard
             key={project.project_id}

@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const ProjectCard = ({ id, title, desc, path }) => {
   return (
-    <div className="col-span-3  lg:col-span-1">
+    <div className="col-span-3  lg:col-span-1 ">
       <div className="flex flex-col bg-gray-800/30 h-[250px] overflow-hidden relative rounded-3xl">
         <div className="flex-grow">
           <h1 className="px-4 pt-3 pb-2 text-white font-semibold text-lg">

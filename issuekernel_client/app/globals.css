@@ -121,9 +121,13 @@ main {
     @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
   }
 
-  .blue_gradient {
+  /* .blue_gradient {
     @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
-  }
+  } */
+
+  /* .grd_green {
+    @apply bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-green-300 via-indigo-800 to-blue-400 bg-clip-text text-transparent;
+  } */
   .purple_gradient {
     @apply bg-gradient-to-r from-purple-800 to-violet-400 bg-clip-text text-transparent;
   }
