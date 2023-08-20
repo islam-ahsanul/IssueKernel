@@ -1,17 +1,6 @@
 'use client';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-  SheetFooter,
-  SheetClose,
-} from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
 
-import ChangeManager from '@/components/changeManager';
+import ChangeManagerModal from '@/components/ChangeManagerModal';
 
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
@@ -60,6 +49,15 @@ const page = ({ params }) => {
   // console.log(manager.email);
   // console.log(manager.full_name);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="mx-20">
       <div className="flex flex-col w-full">
@@ -67,7 +65,7 @@ const page = ({ params }) => {
           <div className="text-6xl px-4 pt-2 pb-20 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-rose-500 via-rose-300 to-indigo-800 bg-clip-text text-transparent tracking-wider">
             {project_name}
           </div>
-          <hr class="h-0.5 border-t-0  bg-gradient-to-r from-transparent via-gray-800 to-transparent" />
+          <hr className="h-0.5 border-t-0  bg-gradient-to-r from-transparent via-gray-800 to-transparent" />
           <p className="pt-4 pb-1 px-4 text-light-3 tracking-wider">
             DESCRIPTION:{' '}
           </p>
@@ -81,7 +79,13 @@ const page = ({ params }) => {
             <p className="pt-4 pb-1 px-4 text-light-3 tracking-wider">
               MANAGER
             </p>
-            <ChangeManager />
+            <button
+              className="bg-blue-500 hover:bg-blue text-white px-4 py-2 rounded"
+              onClick={openModal}
+            >
+              Open Modal
+            </button>
+            {isModalOpen && <ChangeManagerModal onClose={closeModal} />}
           </div>
           <p className="text-white">
             {manager ? `${manager.full_name}` : 'No manager assigned'}
