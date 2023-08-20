@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 
-const ChangeManagerModal = ({ onClose }) => {
+const ChangeManagerModal = ({ onClose, projectId }) => {
   const [availableManagers, setAvailableManagers] = useState([]);
   const { data: session } = useSession();
-  const router = useRouter();
 
   useEffect(() => {
     const fetchAvailableManagers = async () => {
@@ -41,9 +39,30 @@ const ChangeManagerModal = ({ onClose }) => {
     fetchAvailableManagers();
   }, []);
 
-  const handleManagerClick = (manager) => {
-    console.log('Selected Manager:', manager.full_name);
-    onClose();
+  const handleManagerClick = async (manager) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/projects/${projectId}/manager?managerId=${manager.user_id}`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${session?.user.accessToken}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        // Successfully updated the project's manager
+        console.log('Project manager updated:', response.statusText);
+        onClose(); // Close the modal or perform any other action
+      } else {
+        console.log('Error updating project manager:', response.statusText);
+      }
+    } catch (error) {
+      console.log('Error updating project manager:', error);
+    }
+    // console.log('Selected Manager:', manager.full_name);
+    // onClose();
   };
 
   return (

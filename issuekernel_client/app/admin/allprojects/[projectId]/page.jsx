@@ -4,10 +4,13 @@ import ChangeManagerModal from '@/components/ChangeManagerModal';
 
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const page = ({ params }) => {
   const [projectDetails, setProjectDetails] = useState({});
   const { data: session } = useSession();
+  const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -34,7 +37,7 @@ const page = ({ params }) => {
     };
 
     fetchProject();
-  }, []);
+  }, [isModalOpen]);
 
   // console.log(projectDetails);
   const {
@@ -49,13 +52,13 @@ const page = ({ params }) => {
   // console.log(manager.email);
   // console.log(manager.full_name);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    // router.refresh();
   };
 
   return (
@@ -85,7 +88,9 @@ const page = ({ params }) => {
             >
               Open Modal
             </button>
-            {isModalOpen && <ChangeManagerModal onClose={closeModal} />}
+            {isModalOpen && (
+              <ChangeManagerModal onClose={closeModal} projectId={project_id} />
+            )}
           </div>
           <p className="text-white">
             {manager ? `${manager.full_name}` : 'No manager assigned'}
