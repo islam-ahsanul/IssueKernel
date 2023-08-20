@@ -15,6 +15,7 @@ public class ProjectService {
     private ProjectRepository projectRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
     private UserService userService;
 
     public Project createProject(Project project) {
