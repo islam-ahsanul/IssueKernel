@@ -49,4 +49,8 @@ public class UserService {
 //        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 //        return passwordEncoder.encode(plainPassword);
 //    }
+
+    public List<User> getAvailableDevelopers() {
+        return userRepository.findAvailableDevelopers();
+    }
 }

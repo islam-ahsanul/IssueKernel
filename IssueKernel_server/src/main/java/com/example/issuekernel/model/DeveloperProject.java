@@ -25,6 +25,11 @@ public class DeveloperProject {
         this.project_id = project_id;
     }
 
+    public DeveloperProject(User developer_id, Project project_id) {
+        this.developer_id = developer_id;
+        this.project_id = project_id;
+    }
+
     public DeveloperProject() {
     }
 

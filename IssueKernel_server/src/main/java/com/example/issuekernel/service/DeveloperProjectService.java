@@ -20,15 +20,18 @@ public class DeveloperProjectService {
     @Autowired
     private UserService userService;
     @Autowired
+    private ProjectService projectService;
+    @Autowired
     public DeveloperProjectService(DeveloperProjectRepository developerProjectRepository) {
         this.developerProjectRepository = developerProjectRepository;
     }
 
-    public DeveloperProject createDeveloperProject(Integer developerId) {
+    public DeveloperProject createDeveloperProject(Integer developerId, Integer projectId) {
         DeveloperProject developerProject = new DeveloperProject();
         User developer = userService.getUserById(developerId);// You need to fetch the User entity using the developerId
+        Project project = projectService.getProjectById(projectId);
         developerProject.setDeveloper_id(developer);
-        developerProject.setProject_id(null);
+        developerProject.setProject_id(project);
 
         return developerProjectRepository.save(developerProject);
     }
@@ -39,5 +42,16 @@ public class DeveloperProjectService {
 
     public List<DeveloperWithProjectDTO> getDevelopersWithProjects() {
         return developerProjectRepository.findDevelopersWithProjects();
+    }
+
+    public DeveloperProject assignDeveloperToProject(Integer developerId, Integer projectId) {
+        User developer = userService.getUserById(developerId);
+        Project project = projectService.getProjectById(projectId);
+
+        if (developer != null && project != null) {
+            return developerProjectRepository.save(new DeveloperProject(developer, project));
+        } else {
+            return null;
+        }
     }
 }

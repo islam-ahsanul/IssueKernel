@@ -36,8 +36,41 @@ const DevsOfProject = ({ projectId }) => {
 export default DevsOfProject;
 
 const AddDevModal = ({ onClose, projectId }) => {
+  const [availableDevelopers, setAvailableDevelopers] = useState([]);
   const { data: session } = useSession();
   const modalRef = useRef(null);
+
+  useEffect(() => {
+    const fetchAvailableDevelopers = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/users/available-developers`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${session?.user.accessToken}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          const data = await response.json();
+          setAvailableDevelopers(data);
+          console.log('⚡');
+          console.log(data);
+        } else {
+          console.log(
+            'Error fetching available managers:',
+            response.statusText
+          );
+        }
+      } catch (error) {
+        console.log('Error fetching available managers:', error);
+      }
+    };
+
+    fetchAvailableDevelopers();
+  }, []);
 
   const handleClickOutsideModal = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -59,7 +92,17 @@ const AddDevModal = ({ onClose, projectId }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-8 rounded-md shadow-md" ref={modalRef}>
         <h2 className="text-xl font-semibold mb-4">Select Developers</h2>
-        // available developers will be here
+        <ul>
+          {availableDevelopers.map((devs) => (
+            <li
+              key={devs.user_id}
+              className="cursor-pointer hover:bg-gray-100 p-2 rounded"
+              //   onClick={() => handleManagerClick(manager)}
+            >
+              {devs.email}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
