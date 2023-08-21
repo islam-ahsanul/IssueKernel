@@ -1,6 +1,7 @@
 'use client';
 
 import ChangeManagerModal from '@/components/ChangeManagerModal';
+import DevsOfProject from '@/components/DevsOfProject';
 
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
@@ -9,7 +10,6 @@ import { useRouter } from 'next/navigation';
 const page = ({ params }) => {
   const [projectDetails, setProjectDetails] = useState({});
   const { data: session } = useSession();
-  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -97,6 +97,7 @@ const page = ({ params }) => {
           </p>
         </div>
         <div className="bg-orange-500">This will be devs card</div>
+        <DevsOfProject projectId={project_id} />
       </div>
     </div>
   );
