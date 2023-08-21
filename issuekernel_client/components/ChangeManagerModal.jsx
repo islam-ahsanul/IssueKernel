@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 
 import { Button } from '@/components/ui/button';
@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 const ChangeManagerModal = ({ onClose, projectId }) => {
   const [availableManagers, setAvailableManagers] = useState([]);
   const { data: session } = useSession();
+  const modalRef = useRef(null);
 
   useEffect(() => {
     const fetchAvailableManagers = async () => {
@@ -65,6 +66,22 @@ const ChangeManagerModal = ({ onClose, projectId }) => {
     // onClose();
   };
 
+  const handleClickOutsideModal = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    if (modalRef.current) {
+      document.addEventListener('mousedown', handleClickOutsideModal);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideModal);
+    };
+  }, []);
+
   return (
     // <div>
     //   <div>Hi</div>
@@ -75,7 +92,7 @@ const ChangeManagerModal = ({ onClose, projectId }) => {
     //   </div>
     // </div>
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-8 rounded-md shadow-md">
+      <div className="bg-white p-8 rounded-md shadow-md" ref={modalRef}>
         <h2 className="text-xl font-semibold mb-4">Select a Manager</h2>
         <ul>
           {availableManagers.map((manager) => (
