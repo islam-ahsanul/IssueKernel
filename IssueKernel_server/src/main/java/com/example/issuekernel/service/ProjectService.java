@@ -23,6 +23,7 @@ public class ProjectService {
 
         return projectRepository.save(project);
     }
+
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
@@ -40,8 +41,19 @@ public class ProjectService {
         }
         return null;
     }
+
     public List<User> getAvailableManagers() {
         return projectRepository.findAvailableManagers();
     }
+
+    public Project removeManagerFromProject(Integer projectId) {
+        Project project = projectRepository.findById(projectId).orElse(null);
+        if (project != null) {
+            project.setManager(null);
+            return projectRepository.save(project);
+        }
+        return null;
+    }
+
 
 }

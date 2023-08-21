@@ -68,4 +68,15 @@ public class ProjectController {
         List<User> availableManagers = projectService.getAvailableManagers();
         return new ResponseEntity<>(availableManagers, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{project_id}/manager/remove")
+    public ResponseEntity<Project> removeManagerFromProject(@PathVariable("project_id") Integer projectId) {
+        Project project = projectService.removeManagerFromProject(projectId);
+        if (project != null) {
+            return new ResponseEntity<>(project, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

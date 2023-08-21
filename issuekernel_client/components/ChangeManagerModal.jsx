@@ -66,6 +66,29 @@ const ChangeManagerModal = ({ onClose, projectId }) => {
     // onClose();
   };
 
+  const handleRemoveManagerClick = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/projects/${projectId}/manager/remove`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${session?.user.accessToken}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log('Project manager removed:', response.statusText);
+        onClose();
+      } else {
+        console.log('Error removing project manager:', response.statusText);
+      }
+    } catch (error) {
+      console.log('Error removing project manager:', error);
+    }
+  };
+
   const handleClickOutsideModal = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       onClose();
@@ -105,6 +128,7 @@ const ChangeManagerModal = ({ onClose, projectId }) => {
             </li>
           ))}
         </ul>
+        <Button onClick={handleRemoveManagerClick}>Remove Manager</Button>
       </div>
     </div>
   );
