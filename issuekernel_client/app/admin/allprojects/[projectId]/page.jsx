@@ -97,7 +97,7 @@ const page = ({ params }) => {
           </p>
         </div>
         <div className="bg-orange-500">This will be devs card</div>
-        <DevsOfProject projectId={project_id} />
+        <DevsOfProject projectId={params.projectId} />
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -39,5 +40,11 @@ public class DeveloperProjectController {
         } else {
             return new ResponseEntity<>("Error assigning developer to project", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/{projectId}/developers")
+    public ResponseEntity<List<DeveloperDTO>> getDevelopersForProject(@PathVariable Integer projectId) {
+        List<DeveloperDTO> developers = developerProjectService.getDevelopersForProject(projectId);
+        return new ResponseEntity<>(developers, HttpStatus.OK);
     }
 }

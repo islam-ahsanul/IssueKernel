@@ -2,6 +2,7 @@ package com.example.issuekernel.repository;
 
 import com.example.issuekernel.controller.DeveloperWithProjectDTO;
 import com.example.issuekernel.model.DeveloperProject;
+import com.example.issuekernel.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,5 +16,8 @@ public interface DeveloperProjectRepository extends JpaRepository<DeveloperProje
             "LEFT JOIN Project p ON dp.project_id.project_id = p.project_id " +
             "WHERE u.role = 'Developer'")
     List<DeveloperWithProjectDTO> findDevelopersWithProjects();
+
+    @Query("SELECT dp.developer_id FROM DeveloperProject dp WHERE dp.project_id.project_id = :projectId")
+    List<User> findDevelopersByProjectId(Integer projectId);
 }
 

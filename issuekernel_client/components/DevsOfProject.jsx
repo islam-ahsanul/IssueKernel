@@ -6,6 +6,36 @@ const DevsOfProject = ({ projectId }) => {
   const { data: session } = useSession();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [devsOfProject, setDevsOfProject] = useState([]);
+
+  useEffect(() => {
+    const fetchDevsOfProject = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/developer-projects/${projectId}/developers`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${session?.user.accessToken}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          const data = await response.json();
+          setDevsOfProject(data);
+          console.log('🦖');
+          console.log(data);
+        } else {
+          console.log('Error fetching Devs of Project:', response.statusText);
+        }
+      } catch (error) {
+        console.log('Error fetching Devs of Project:', error);
+      }
+    };
+
+    fetchDevsOfProject();
+  }, [isModalOpen]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -29,6 +59,9 @@ const DevsOfProject = ({ projectId }) => {
         )}
       </div>
       // list of devs will be here
+      {devsOfProject.map((devs) => (
+        <p>{devs.full_name}</p>
+      ))}
     </div>
   );
 };
@@ -60,12 +93,12 @@ const AddDevModal = ({ onClose, projectId }) => {
           console.log(data);
         } else {
           console.log(
-            'Error fetching available managers:',
+            'Error fetching available developers:',
             response.statusText
           );
         }
       } catch (error) {
-        console.log('Error fetching available managers:', error);
+        console.log('Error fetching available developers:', error);
       }
     };
 

@@ -1,5 +1,6 @@
 package com.example.issuekernel.service;
 
+import com.example.issuekernel.controller.DeveloperDTO;
 import com.example.issuekernel.controller.DeveloperWithProjectDTO;
 import com.example.issuekernel.model.DeveloperProject;
 import com.example.issuekernel.model.Project;
@@ -10,6 +11,7 @@ import com.example.issuekernel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +55,19 @@ public class DeveloperProjectService {
         } else {
             return null;
         }
+    }
+
+    public List<DeveloperDTO> getDevelopersForProject(Integer projectId) {
+        List<User> developers = developerProjectRepository.findDevelopersByProjectId(projectId);
+        List<DeveloperDTO> developerDTOs = new ArrayList<>();
+
+        for (User developer : developers) {
+            DeveloperDTO developerDTO = new DeveloperDTO();
+            developerDTO.setFull_name(developer.getFull_name());
+            developerDTO.setEmail(developer.getEmail());
+            developerDTOs.add(developerDTO);
+        }
+
+        return developerDTOs;
     }
 }
