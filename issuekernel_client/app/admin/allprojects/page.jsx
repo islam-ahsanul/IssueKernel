@@ -88,7 +88,7 @@ const AllProjects = () => {
         <DialogTrigger asChild>
           <div className="flex justify-end ">
             {/* <Button variant="outline">Create a New Project</Button> */}
-            <div className="flex gap-1 cursor-pointer bg-primary-500 p-2 rounded-xl">
+            <div className="flex gap-1 cursor-pointer bg_grad_primary p-2 rounded-xl">
               <Image src="/create.svg" height={24} width={24} />
               <p className="text-white">Create a new project</p>
             </div>
@@ -146,7 +146,7 @@ const AllProjects = () => {
 
             <DialogFooter>
               <DialogClose asChild>
-                <Button type="submit" className="bg-primary-500">
+                <Button type="submit" className="bg_grad_primary">
                   Save changes
                 </Button>
               </DialogClose>

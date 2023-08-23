@@ -55,7 +55,7 @@ const Login = ({ searchParams }) => {
       >
         {searchParams?.message && <p>{searchParams?.message}</p>}
         <h1 className="head_text text-center">
-          <span className="text-primary-500">Login</span>
+          <span className="fg_grad_primary">Login</span>
         </h1>
         <div className="mb-1">
           <label
@@ -93,7 +93,7 @@ const Login = ({ searchParams }) => {
         </div>
         <button
           type="submit"
-          className="font-nunito w-full bg-white text-dark-1 py-2 px-4 rounded-full hover:bg-primary-500"
+          className="font-nunito w-full bg-white text-dark-1 py-2 px-4 rounded-full hover:bg_grad_primary hover:text-white"
         >
           {submitting ? 'Loging in...' : 'Login'}
         </button>

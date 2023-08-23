@@ -144,6 +144,15 @@ main {
     @apply bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900 bg-clip-text text-transparent;
   }
 
+  /* Bg Gradients */
+  .bg_grad_primary {
+    @apply bg-gradient-to-l from-purple-700 via-purple-800 to-purple-900;
+    /* bg-gradient-to-tl from-purple-200 via-purple-400 to-purple-800 */
+  }
+  .fg_grad_primary {
+    @apply bg-gradient-to-r from-purple-700 via-purple-800 to-purple-900 bg-clip-text text-transparent;
+  }
+
   /* description text */
   .desc {
     @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;

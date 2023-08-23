@@ -37,13 +37,13 @@ const UserCard = ({ id, name, email, role }) => {
           Select Role:
         </label> */}
         {role === 'Admin' ? (
-          <div className="block w-[150px] max-h-[39px]  p-2  rounded-md bg-primary-500 text-white">
+          <div className="block w-[150px] max-h-[39px]  p-2  rounded-md bg_grad_primary text-white">
             Admin
           </div>
         ) : (
           <select
             id="role"
-            className="block w-[150px]  p-2  rounded-md bg-primary-500 text-white "
+            className="block w-[150px]  p-2  rounded-md bg_grad_primary text-white "
             value={selectedRole}
             onChange={(e) => handleRoleChange(e.target.value)}
           >

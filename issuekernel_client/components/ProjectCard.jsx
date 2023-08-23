@@ -13,7 +13,7 @@ const ProjectCard = ({ id, title, desc, path }) => {
         <div className="flex justify-center items-center p-4 absolute bottom-0 left-0 right-0 bg-transparent z-20">
           <Link
             href={path}
-            className="bg-primary-500 py-1 px-7 text-center rounded-xl text-white"
+            className="bg_grad_primary py-1 px-7 text-center rounded-xl text-white"
           >
             View
           </Link>

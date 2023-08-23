@@ -49,7 +49,7 @@ const Register = () => {
         className="w-full max-w-2xl flex flex-col gap-7 px-10 py-4 border border-slate-700 bg-gray-800/30 rounded-3xl"
       >
         <h1 className="head_text text-center">
-          <span className="text-primary-500">Create Account</span>
+          <span className="fg_grad_primary">Create Account</span>
         </h1>
         <div className="mb-1">
           <label
@@ -119,7 +119,7 @@ const Register = () => {
         </div>
         <button
           type="submit"
-          className="font-nunito w-full bg-white text-dark-1 py-2 px-4 rounded-full hover:bg-primary-500"
+          className="font-nunito w-full bg-white text-dark-1 py-2 px-4 rounded-full hover:bg_grad_primary"
         >
           {submitting ? 'Creating Accout...' : 'Create Account'}
         </button>
