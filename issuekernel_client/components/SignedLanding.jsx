@@ -44,7 +44,7 @@ const SignedLanding = () => {
           Your ID: {account.user_id}
           Your Email: {account.email}
         </h1>
-        <div className=" font-nunito mt-14 font-semibold text-2xl text-center max-w-xl align-middle">
+        <div className=" text-white mt-14 font-semibold text-2xl text-center max-w-xl align-middle">
           You are signed in as {account.role}
         </div>
         <Link

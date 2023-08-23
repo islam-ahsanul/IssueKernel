@@ -5,11 +5,11 @@ const VisitorLanding = () => {
   return (
     <>
       <section className="flex-center flex-col paddings mt-15 mx-20">
-        <h1 className="font-mono font-extrabold text-5xl text-black tracking-wide text-left purple_gradient">
+        <h1 className="font-extrabold text-5xl text-black tracking-wide text-left purple_gradient">
           Step into a world of organized projects and efficient issue resolution
           with IssueKernel.
         </h1>
-        <div className=" font-nunito mt-14 font-semibold text-2xl text-center max-w-xl align-middle">
+        <div className=" text-white mt-14 font-semibold text-2xl text-center max-w-xl align-middle">
           Harmonizes user experiences and developer expertise, a fusion that
           powers effective solutions.
         </div>
