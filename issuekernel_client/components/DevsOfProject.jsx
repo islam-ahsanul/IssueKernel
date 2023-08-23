@@ -191,7 +191,8 @@ const AddDevModal = ({ onClose, projectId }) => {
           {selectedDevelopers.map((dev) => (
             <div
               key={dev.user_id}
-              className="bg-blue text-black px-2 py-1 rounded"
+              className="bg-blue text-black px-2 py-1 rounded cursor-pointer"
+              onClick={() => handleDevClick(dev)}
             >
               {dev.email}
             </div>
