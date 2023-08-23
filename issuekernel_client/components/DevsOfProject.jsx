@@ -60,7 +60,7 @@ const DevsOfProject = ({ projectId }) => {
       </div>
       // list of devs will be here
       {devsOfProject.map((devs) => (
-        <p>{devs.full_name}</p>
+        <p className="text-white">{devs.full_name}</p>
       ))}
     </div>
   );
@@ -121,6 +121,10 @@ const AddDevModal = ({ onClose, projectId }) => {
     };
   }, []);
 
+  const handleDevClick = (devs) => {
+    console.log(devs.user_id);
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-8 rounded-md shadow-md" ref={modalRef}>
@@ -130,7 +134,7 @@ const AddDevModal = ({ onClose, projectId }) => {
             <li
               key={devs.user_id}
               className="cursor-pointer hover:bg-gray-100 p-2 rounded"
-              //   onClick={() => handleManagerClick(manager)}
+              onClick={() => handleDevClick(devs)}
             >
               {devs.email}
             </li>
