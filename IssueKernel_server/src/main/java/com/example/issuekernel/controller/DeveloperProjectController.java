@@ -30,15 +30,15 @@ public class DeveloperProjectController {
 
 
     // DeveloperProjectController.java
-    @PostMapping("/assign/{developerId}/{projectId}")
-    public ResponseEntity<String> assignDeveloperToProject(
-            @PathVariable Integer developerId,
-            @PathVariable Integer projectId) {
-        DeveloperProject assignedProject = developerProjectService.assignDeveloperToProject(developerId, projectId);
+    @PostMapping("/assign")
+    public ResponseEntity<String> assignDevelopersToProject(
+            @RequestParam List<Integer> developerIds,
+            @RequestParam Integer projectId) {
+        DeveloperProject assignedProject = developerProjectService.assignDevelopersToProject(developerIds, projectId);
         if (assignedProject != null) {
-            return new ResponseEntity<>("Developer assigned to project successfully", HttpStatus.OK);
+            return new ResponseEntity<>("Developers assigned to project successfully", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Error assigning developer to project", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error assigning developers to project", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

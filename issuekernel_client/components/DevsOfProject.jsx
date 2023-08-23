@@ -68,10 +68,12 @@ const DevsOfProject = ({ projectId }) => {
 
 export default DevsOfProject;
 
+//* The Modal !
 const AddDevModal = ({ onClose, projectId }) => {
   const [availableDevelopers, setAvailableDevelopers] = useState([]);
   const { data: session } = useSession();
   const modalRef = useRef(null);
+  const [selectedDevelopers, setSelectedDevelopers] = useState([]);
 
   useEffect(() => {
     const fetchAvailableDevelopers = async () => {
@@ -121,25 +123,106 @@ const AddDevModal = ({ onClose, projectId }) => {
     };
   }, []);
 
-  const handleDevClick = (devs) => {
-    console.log(devs.user_id);
+  const handleDevClick = (developer) => {
+    const isSelected = selectedDevelopers.some(
+      (dev) => dev.user_id === developer.user_id
+    );
+
+    if (isSelected) {
+      setSelectedDevelopers(
+        selectedDevelopers.filter((dev) => dev.user_id !== developer.user_id)
+      );
+    } else {
+      setSelectedDevelopers([...selectedDevelopers, developer]);
+    }
+  };
+
+  const assignDevelopersToProject = async () => {
+    try {
+      const developerIds = selectedDevelopers
+        .map((dev) => dev.user_id)
+        .join(',');
+      const response = await fetch(
+        `http://localhost:8080/api/developer-projects/assign?developerIds=${developerIds}&projectId=${projectId}`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${session?.user.accessToken}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log('Developers assigned to project successfully');
+        onClose();
+      } else {
+        console.log(
+          'Error assigning developers to project:',
+          response.statusText
+        );
+      }
+    } catch (error) {
+      console.log('Error assigning developers to project:', error);
+    }
   };
 
   return (
+    // <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    //   <div className="bg-white p-8 rounded-md shadow-md" ref={modalRef}>
+    //     <h2 className="text-xl font-semibold mb-4">Select Developers</h2>
+    //     <ul>
+    //       {availableDevelopers.map((devs) => (
+    //         <li
+    //           key={devs.user_id}
+    //           className="cursor-pointer hover:bg-gray-100 p-2 rounded"
+    //           onClick={() => handleDevClick(devs)}
+    //         >
+    //           {devs.email}
+    //         </li>
+    //       ))}
+    //     </ul>
+    //   </div>
+    // </div>
+
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-8 rounded-md shadow-md" ref={modalRef}>
         <h2 className="text-xl font-semibold mb-4">Select Developers</h2>
-        <ul>
-          {availableDevelopers.map((devs) => (
-            <li
-              key={devs.user_id}
-              className="cursor-pointer hover:bg-gray-100 p-2 rounded"
-              onClick={() => handleDevClick(devs)}
+        <div className="flex flex-wrap gap-2">
+          {selectedDevelopers.map((dev) => (
+            <div
+              key={dev.user_id}
+              className="bg-blue text-black px-2 py-1 rounded"
             >
-              {devs.email}
-            </li>
+              {dev.email}
+            </div>
           ))}
-        </ul>
+        </div>
+        <select
+          multiple
+          className="w-full border rounded p-2 mt-4"
+          onChange={(e) =>
+            handleDevClick(
+              availableDevelopers.find(
+                (dev) => dev.user_id === parseInt(e.target.value)
+              )
+            )
+          }
+        >
+          <option value="" disabled>
+            Select developers...
+          </option>
+          {availableDevelopers.map((dev) => (
+            <option key={dev.user_id} value={dev.user_id}>
+              {dev.email}
+            </option>
+          ))}
+        </select>
+        <button
+          className="mt-4 bg-blue hover:bg-blue-600 text-white px-4 py-2 rounded"
+          onClick={assignDevelopersToProject}
+        >
+          Assign Developers
+        </button>
       </div>
     </div>
   );

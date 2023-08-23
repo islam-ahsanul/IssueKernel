@@ -46,12 +46,17 @@ public class DeveloperProjectService {
         return developerProjectRepository.findDevelopersWithProjects();
     }
 
-    public DeveloperProject assignDeveloperToProject(Integer developerId, Integer projectId) {
-        User developer = userService.getUserById(developerId);
+    public DeveloperProject assignDevelopersToProject(List<Integer> developerIds, Integer projectId) {
+        List<User> developers = userService.getUsersByIds(developerIds);
         Project project = projectService.getProjectById(projectId);
 
-        if (developer != null && project != null) {
-            return developerProjectRepository.save(new DeveloperProject(developer, project));
+        if (developers != null && !developers.isEmpty() && project != null) {
+            List<DeveloperProject> assignedProjects = new ArrayList<>();
+            for (User developer : developers) {
+                assignedProjects.add(developerProjectRepository.save(new DeveloperProject(developer, project)));
+            }
+            // Return the last assigned project as an example
+            return assignedProjects.get(assignedProjects.size() - 1);
         } else {
             return null;
         }

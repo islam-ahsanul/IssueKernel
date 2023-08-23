@@ -53,4 +53,7 @@ public class UserService {
     public List<User> getAvailableDevelopers() {
         return userRepository.findAvailableDevelopers();
     }
+    public List<User> getUsersByIds(List<Integer> userIds) {
+        return userRepository.findAllById(userIds);
+    }
 }
