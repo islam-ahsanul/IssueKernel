@@ -39,7 +39,7 @@ const SignedLanding = () => {
   return (
     <>
       <section className="flex-center flex-col paddings mt-15 mx-20">
-        <h1 className="font-mono font-extrabold text-5xl text-black tracking-wide text-left purple_gradient">
+        <h1 className="font-extrabold text-5xl text-black tracking-wide text-left purple_gradient">
           Welcome, {account.full_name}
           Your ID: {account.user_id}
           Your Email: {account.email}
