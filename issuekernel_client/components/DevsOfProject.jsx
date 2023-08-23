@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 const DevsOfProject = ({ projectId }) => {
   const { data: session } = useSession();
@@ -46,21 +47,31 @@ const DevsOfProject = ({ projectId }) => {
   };
   return (
     <div className="flex flex-col bg-gray-800/50 mt-2 mb-2 rounded-3xl">
-      <div className="flex flex-row">
-        <p className="pt-4 pb-1 px-4 text-light-3 tracking-wider">DEVELOPERS</p>
+      <div className="flex flex-row mt-3">
+        <p className="bg-light-2 text-black tracking-wider my-3 mx-3 px-3 rounded-full">
+          DEVELOPERS
+        </p>
         <button
-          className="bg-blue-500 hover:bg-blue text-white px-4 py-2 rounded"
+          className="hover:text-blue text-light-3 px-4 py-2 rounded"
           onClick={openModal}
         >
-          Add Developers
+          <div className="flex flex-row gap-1">
+            <Image src="/group-add.svg" height={24} width={24} />
+            <p className="text-light-3 hover:text-violet-500">Add Developers</p>
+          </div>
         </button>
         {isModalOpen && (
           <AddDevModal onClose={closeModal} projectId={projectId} />
         )}
       </div>
-      // list of devs will be here
+
       {devsOfProject.map((devs) => (
-        <p className="text-white">{devs.full_name}</p>
+        <div className="flex flex-row gap-2 mx-4 my-2">
+          <Image src="/user.svg" alt="devs" height={24} width={24} />
+          <p className="text-white font-semibold tracking-wider">
+            {devs.full_name}
+          </p>
+        </div>
       ))}
     </div>
   );

@@ -2,6 +2,7 @@
 
 import ChangeManagerModal from '@/components/ChangeManagerModal';
 import DevsOfProject from '@/components/DevsOfProject';
+import Image from 'next/image';
 
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
@@ -77,26 +78,34 @@ const page = ({ params }) => {
           </div>
         </div>
 
-        <div className="flex flex-col bg-gray-800/50 mt-2 mb-2 rounded-3xl">
-          <div className="flex flex-row">
-            <p className="pt-4 pb-1 px-4 text-light-3 tracking-wider">
+        <div className="flex flex-col bg-gray-800/50 mt-2 mb-2 rounded-3xl pb-3">
+          <div className="flex flex-row mt-3">
+            <p className=" bg-light-2 text-black tracking-wider my-3 mx-3 px-3 rounded-full">
               MANAGER
             </p>
             <button
-              className="bg-blue-500 hover:bg-blue text-white px-4 py-2 rounded"
+              className=" hover:text-blue text-light-3 px-4 py-2 rounded"
               onClick={openModal}
             >
-              Open Modal
+              <div className="flex flex-row gap-2">
+                <Image src="/edit.svg" height={20} width={20} />
+                <p className="text-light-3 hover:text-violet-500">
+                  Change Manager
+                </p>
+              </div>
             </button>
             {isModalOpen && (
               <ChangeManagerModal onClose={closeModal} projectId={project_id} />
             )}
           </div>
-          <p className="text-white">
-            {manager ? `${manager.full_name}` : 'No manager assigned'}
-          </p>
+          <div className="flex flex-row  py-1 mx-4 gap-2">
+            <Image src="/user.svg" width={24} height={24} alt="manager" />
+            <p className="text-white font-semibold tracking-wider">
+              {manager ? `${manager.full_name}` : 'No Manager Assigned'}
+            </p>
+          </div>
         </div>
-        <div className="bg-orange-500">This will be devs card</div>
+
         <DevsOfProject projectId={params.projectId} />
       </div>
     </div>
