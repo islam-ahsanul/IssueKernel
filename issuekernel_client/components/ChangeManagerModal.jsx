@@ -106,29 +106,36 @@ const ChangeManagerModal = ({ onClose, projectId }) => {
   }, []);
 
   return (
-    // <div>
-    //   <div>Hi</div>
-    //   <div>
-    //     {availableManagers.map((manager) => (
-    //       <p>{manager.email}</p>
-    //     ))}
-    //   </div>
-    // </div>
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-8 rounded-md shadow-md" ref={modalRef}>
-        <h2 className="text-xl font-semibold mb-4">Select a Manager</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-steel-blue-5/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+      <div
+        className="bg-dark-1 p-8 rounded-2xl shadow-md flex flex-col items-center"
+        ref={modalRef}
+      >
+        <h2 className="text-xl font-semibold mb-4 text-center text-white">
+          Select a Manager
+        </h2>
         <ul>
           {availableManagers.map((manager) => (
             <li
               key={manager.user_id}
-              className="cursor-pointer hover:bg-gray-100 p-2 rounded"
+              className="cursor-pointer hover:bg-gray-900 p-2 rounded-2xl"
               onClick={() => handleManagerClick(manager)}
             >
-              {manager.email}
+              <div className="flex flex-row justify-between gap-28 px-3">
+                <p className="text-left text-white tracking-wider">
+                  {manager.full_name}
+                </p>
+                <p className="text-left text-light-3">{manager.email}</p>
+              </div>
             </li>
           ))}
         </ul>
-        <Button onClick={handleRemoveManagerClick}>Remove Manager</Button>
+        <Button
+          className="mt-10 bg_grad_primary rounded-2xl"
+          onClick={handleRemoveManagerClick}
+        >
+          Remove Current Manager
+        </Button>
       </div>
     </div>
   );
