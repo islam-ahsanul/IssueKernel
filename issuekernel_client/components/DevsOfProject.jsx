@@ -195,23 +195,25 @@ const AddDevModal = ({ onClose, projectId }) => {
     //   </div>
     // </div>
 
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-8 rounded-md shadow-md" ref={modalRef}>
-        <h2 className="text-xl font-semibold mb-4">Select Developers</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-steel-blue-5/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+      <div className="bg-dark-1 p-8 rounded-2xl shadow-md" ref={modalRef}>
+        <h2 className="text-xl font-semibold mb-4 text-center text-white">
+          Select Developers
+        </h2>
         <div className="flex flex-wrap gap-2">
           {selectedDevelopers.map((dev) => (
             <div
               key={dev.user_id}
-              className="bg-blue text-black px-2 py-1 rounded cursor-pointer"
+              className="bg_grad_primary text-white px-2 py-1 rounded-full cursor-pointer"
               onClick={() => handleDevClick(dev)}
             >
-              {dev.email}
+              {dev.full_name}
             </div>
           ))}
         </div>
         <select
           multiple
-          className="w-full border rounded p-2 mt-4"
+          className="w-full h-72 rounded-2xl p-4 mt-4 text-white bg-dark-1 custom-scrollbar"
           onChange={(e) =>
             handleDevClick(
               availableDevelopers.find(
@@ -220,17 +222,25 @@ const AddDevModal = ({ onClose, projectId }) => {
             )
           }
         >
-          <option value="" disabled>
-            Select developers...
+          <option
+            value=""
+            disabled
+            className="tracking-wider mb-5 text-gray-500"
+          >
+            SELECT DEVELOPERS...
           </option>
           {availableDevelopers.map((dev) => (
-            <option key={dev.user_id} value={dev.user_id}>
+            <option
+              key={dev.user_id}
+              value={dev.user_id}
+              className="tracking-wider my-2 rounded-full px-2 py-1 cursor-pointer selected:bg-red-500"
+            >
               {dev.email}
             </option>
           ))}
         </select>
         <button
-          className="mt-4 bg-blue hover:bg-blue-600 text-white px-4 py-2 rounded"
+          className="mt-4 bg_grad_primary hover:bg-blue-600 text-white px-4 py-2 rounded-full w-full"
           onClick={assignDevelopersToProject}
         >
           Assign Developers
