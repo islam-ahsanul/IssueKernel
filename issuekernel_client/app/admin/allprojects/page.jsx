@@ -24,7 +24,7 @@ const AllProjects = () => {
   const [allProjects, setAllProjects] = useState([]);
 
   useEffect(() => {
-    const fetchAllUsrs = async () => {
+    const fetchAllProjects = async () => {
       try {
         const response = await fetch('http://localhost:8080/api/projects', {
           method: 'GET',
@@ -43,7 +43,7 @@ const AllProjects = () => {
         console.log('Error fetching user information:', error);
       }
     };
-    fetchAllUsrs();
+    fetchAllProjects();
   }, []);
 
   //* Form Logic !

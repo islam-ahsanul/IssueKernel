@@ -15,7 +15,7 @@ const sidebarLinks = [
   {
     imgURL: '/projects.svg',
     route: '/consumer/allprojects',
-    label: 'Explore',
+    label: 'Explore Products',
   },
 
   {
