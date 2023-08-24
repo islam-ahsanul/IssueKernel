@@ -73,7 +73,7 @@ const page = ({ params }) => {
           <p className="pt-4 pb-1 px-4 text-light-3 tracking-wider">
             DESCRIPTION:{' '}
           </p>
-          <div className="px-4 text-xl pb-4 pt-0 text-white tracking-tighter">
+          <div className="px-4 text-xl pb-4 pt-0 text-white tracking-wide">
             {project_desc}
           </div>
         </div>
