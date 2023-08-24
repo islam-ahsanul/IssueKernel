@@ -24,20 +24,26 @@ public class Issue {
     @Column(nullable = false)
     private String description;
 
-//    @Enumerated(EnumType.STRING)
+    //    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private String status;
 
-    public Issue(Integer issue_id, Project project, User consumer_id, String title, String description, String status) {
+    @ManyToOne
+    @JoinColumn(name = "developer_id", referencedColumnName = "user_id")
+    private User developer_id;
+
+    public Issue(Integer issue_id, Project project, User consumer_id, String title, String description, String status, User developer_id) {
         this.issue_id = issue_id;
         this.project = project;
         this.consumer_id = consumer_id;
         this.title = title;
         this.description = description;
         this.status = status;
+        this.developer_id = developer_id;
     }
 
-  public Issue(){}
+    public Issue() {
+    }
 
     public Integer getIssue_id() {
         return issue_id;
@@ -85,5 +91,13 @@ public class Issue {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public User getDeveloper_id() {
+        return developer_id;
+    }
+
+    public void setDeveloper_id(User developer_id) {
+        this.developer_id = developer_id;
     }
 }

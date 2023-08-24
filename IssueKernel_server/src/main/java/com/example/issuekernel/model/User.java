@@ -4,6 +4,9 @@ package com.example.issuekernel.model;
 import jakarta.persistence.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 public class User {

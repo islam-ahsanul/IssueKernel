@@ -36,7 +36,8 @@ public class IssueController {
     }
 
     @PutMapping("/{issue_id}")
-    public ResponseEntity<Issue> updateIssueStatus(@PathVariable("issue_id") Integer issueId, @RequestParam String status) {
+    public ResponseEntity<Issue> updateIssueStatus(@PathVariable("issue_id") Integer issueId, @RequestBody String status) {
+
         Issue issue = issueService.updateIssueStatus(issueId, status);
         if (issue != null) {
             return new ResponseEntity<>(issue, HttpStatus.OK);
@@ -44,6 +45,38 @@ public class IssueController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/developer/{developer_id}")
+    public ResponseEntity<List<Issue>> getIssuesByDeveloper(@PathVariable("developer_id") Integer developerId) {
+        List<Issue> issues = issueService.getIssuesByDeveloper(developerId);
+        if (issues != null) {
+            return new ResponseEntity<>(issues, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/consumer/{consumer_id}")
+    public ResponseEntity<List<Issue>> getIssuesByConsumer(@PathVariable("consumer_id") Integer consumerId) {
+        List<Issue> issues = issueService.getIssuesByConsumer(consumerId);
+        if (issues != null) {
+            return new ResponseEntity<>(issues, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+
+    @PutMapping("/{issue_id}/developer/{developer_id}")
+    public ResponseEntity<Issue> updateIssueDeveloper(@PathVariable("issue_id") Integer issueId, @PathVariable("developer_id") Integer developerId) {
+        Issue updatedIssue = issueService.updateIssueDeveloper(issueId, developerId);
+        if (updatedIssue != null) {
+            return new ResponseEntity<>(updatedIssue, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 
 }

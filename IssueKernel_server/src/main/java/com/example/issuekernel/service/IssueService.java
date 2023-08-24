@@ -32,11 +32,13 @@ public class IssueService {
             newIssue.setTitle(issue.getTitle());
             newIssue.setDescription(issue.getDescription());
             newIssue.setStatus("Submitted");
+            newIssue.setDeveloper_id(null);
 
-            return issueRepository.save(issue);
+            return issueRepository.save(newIssue);
         }
         return null;
     }
+
 
     public Issue getIssueById(Integer issueId) {
         return issueRepository.findById(issueId).orElse(null);
@@ -58,4 +60,33 @@ public class IssueService {
         }
         return null;
     }
+
+    public List<Issue> getIssuesByDeveloper(Integer developerId) {
+        User developer = userRepository.findById(developerId).orElse(null);
+        if (developer != null) {
+            return issueRepository.findByDeveloper(developer);
+        }
+        return null;
+    }
+
+    public List<Issue> getIssuesByConsumer(Integer consumerId) {
+        User consumer = userRepository.findById(consumerId).orElse(null);
+        if (consumer != null) {
+            return issueRepository.findByConsumer(consumer);
+        }
+        return null;
+    }
+
+
+    public Issue updateIssueDeveloper(Integer issueId, Integer developerId) {
+        Issue issue = issueRepository.findById(issueId).orElse(null);
+        User developer = userRepository.findById(developerId).orElse(null);
+
+        if (issue != null && developer != null) {
+            issue.setDeveloper_id(developer);
+            return issueRepository.save(issue);
+        }
+        return null;
+    }
+
 }
