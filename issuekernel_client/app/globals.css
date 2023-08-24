@@ -146,8 +146,9 @@ main {
 
   /* Bg Gradients */
   .bg_grad_primary {
-    @apply bg-gradient-to-l from-purple-700 via-purple-800 to-purple-900;
-    /* bg-gradient-to-tl from-purple-200 via-purple-400 to-purple-800 */
+    @apply bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-indigo-900 via-violet-900 to-violet-400
+    /* @apply bg-gradient-to-tl from-purple-600 via-purple-700 to-purple-950 */
+    /* bg-gradient-to-tl from-purple-200 via-purple-400 to-purple-800 */;
   }
   .fg_grad_primary {
     @apply bg-gradient-to-r from-purple-700 via-purple-800 to-purple-900 bg-clip-text text-transparent;
@@ -323,11 +324,11 @@ main {
   }
 
   .leftsidebar {
-    @apply sticky left-0 top-0 z-20 flex h-screen w-fit flex-col justify-between overflow-auto border-r border-r-dark-4 bg-dark-2 pb-5 pt-28 max-md:hidden;
+    @apply sticky left-0 top-0 z-20 flex h-screen w-fit flex-col justify-between overflow-auto border-r border-r-dark-4 bg-dark-2 pb-5 pt-28;
   }
 
   .leftsidebar_link {
-    @apply relative flex justify-start gap-4 rounded-lg p-4;
+    @apply relative flex justify-start gap-4 rounded-xl p-4;
   }
 
   .pagination {

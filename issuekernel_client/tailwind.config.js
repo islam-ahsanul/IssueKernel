@@ -64,6 +64,10 @@ module.exports = {
         'steel-blue-3': '#1B2631 ',
         'steel-blue-4': '#212F3C ',
         'steel-blue-5': '#06050b ',
+        'grad-purple-start': '#743951',
+        'grad-purple-end': '#ea969f',
+        'grad-grape-start': '#383557',
+        'grad-grape-end': '#383557',
         glassmorphism: 'rgba(16, 16, 18, 0.60)',
       },
       boxShadow: {
