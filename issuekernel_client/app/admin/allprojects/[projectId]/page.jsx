@@ -79,28 +79,26 @@ const page = ({ params }) => {
         </div>
 
         <div className="flex flex-col bg-gray-800/50 mt-2 mb-2 rounded-3xl pb-3">
-          <div className="flex flex-row mt-3">
-            <p className=" bg-light-2 text-black tracking-wider my-3 mx-3 px-3 rounded-full">
+          <div className="flex flex-row mt-3 items-center">
+            <p className=" bg-light-2 text-black tracking-wider my-3 mx-3 px-3 rounded-full py-0.5">
               MANAGER
             </p>
-            <button
-              className=" hover:text-blue text-light-3 px-4 py-2 rounded"
+            <div
+              className=" hover:bg-grad-grape-start text-light-3 rounded-full cursor-pointer px-2 py-0.5"
               onClick={openModal}
             >
               <div className="flex flex-row gap-2">
                 <Image src="/edit.svg" height={20} width={20} />
-                <p className="text-light-3 hover:text-violet-500">
-                  Change Manager
-                </p>
+                <p className="text-gray-400">Change Manager</p>
               </div>
-            </button>
+            </div>
             {isModalOpen && (
               <ChangeManagerModal onClose={closeModal} projectId={project_id} />
             )}
           </div>
-          <div className="flex flex-row  py-1 mx-4 gap-2">
+          <div className="flex flex-row  my-2 mx-4 gap-2">
             <Image src="/user.svg" width={24} height={24} alt="manager" />
-            <p className="text-white font-semibold tracking-wider">
+            <p className="text-white font-semibold tracking-widest">
               {manager ? `${manager.full_name}` : 'No Manager Assigned'}
             </p>
           </div>
