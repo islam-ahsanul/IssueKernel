@@ -48,7 +48,7 @@ const DevsOfProject = ({ projectId }) => {
   return (
     <div className="flex flex-col bg-gray-800/50 mt-2 pb-2 rounded-3xl">
       <div className="flex flex-row mt-3 items-center">
-        <p className="bg-light-2 text-black tracking-wider my-3 mx-3 px-3 rounded-full py-0.5">
+        <p className="bg_grad_secondary text-black tracking-wider my-3 mx-3 px-3 rounded-full py-0.5">
           DEVELOPERS
         </p>
         <div

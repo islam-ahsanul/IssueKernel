@@ -21,10 +21,13 @@ const TopBar = () => {
           </div>
         </div> */}
         <div className="block">
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <Image src="/user.svg" width={24} height={24} />
             <p className="text-white font-semibold">
               {session?.user.full_name}
+            </p>
+            <p className="bg_grad_secondary text-sm px-1 rounded-full font-semibold">
+              {session?.user.role}
             </p>
           </div>
         </div>

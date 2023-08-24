@@ -150,6 +150,10 @@ main {
     /* @apply bg-gradient-to-tl from-purple-600 via-purple-700 to-purple-950 */
     /* bg-gradient-to-tl from-purple-200 via-purple-400 to-purple-800 */;
   }
+  .bg_grad_secondary {
+    /* @apply bg-gradient-to-r from-rose-400 to-orange-300 */
+    @apply bg-gradient-to-r from-orange-300 to-rose-300;
+  }
   .fg_grad_primary {
     @apply bg-gradient-to-r from-purple-700 via-purple-800 to-purple-900 bg-clip-text text-transparent;
   }
