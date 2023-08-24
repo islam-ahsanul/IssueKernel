@@ -12,6 +12,24 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 3px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090a;
+}
+::-webkit-scrollbar-thumb {
+  background: #9898cf;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d7d4ff;
+}
+
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

@@ -8,7 +8,7 @@ export const metadata = {
 
 const AdminLayout = ({ children }) => {
   return (
-    <main className="flex flex-row ">
+    <main className="flex flex-row">
       <TopBar />
       <LeftSidebar />
       <section className="main-container">
