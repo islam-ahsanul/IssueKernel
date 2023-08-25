@@ -3,10 +3,12 @@ import Image from 'next/image';
 
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
+import PostIssueModal from '@/components/PostIssueModal';
 
 const ProjectDetails = ({ params }) => {
   const [projectDetails, setProjectDetails] = useState({});
   const { data: session } = useSession();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -41,10 +43,20 @@ const ProjectDetails = ({ params }) => {
     project_desc,
     manager = {},
   } = projectDetails;
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    // router.refresh();
+  };
+
   return (
-    <div className="mx-20">
+    <div className="mx-20 items-center flex flex-col">
       <div className="flex flex-col w-full">
-        <div className="flex flex-col bg-gray-800/50 mt-3 mb-6 rounded-3xl">
+        <div className="flex flex-col bg-gray-800/50 mt-3 mb-3 rounded-3xl">
           <div className="text-6xl px-4 pt-2 pb-20 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-rose-500 via-rose-300 to-indigo-800 bg-clip-text text-transparent tracking-wider">
             {project_name}
           </div>
@@ -57,6 +69,20 @@ const ProjectDetails = ({ params }) => {
           </div>
         </div>
       </div>
+      <div
+        className="bg-grad-grape-start hover:bg_grad_primary rounded-full cursor-pointer py-0.5 w-auto px-4"
+        onClick={openModal}
+      >
+        <div className="flex flex-row gap-2 justify-center">
+          <Image src="/plus.svg" height={20} width={20} />
+          <p className="text-white tracking-wider text-xl font-semibold">
+            Report an issue
+          </p>
+        </div>
+      </div>
+      {isModalOpen && (
+        <PostIssueModal onClose={closeModal} projectId={project_id} />
+      )}
     </div>
   );
 };
