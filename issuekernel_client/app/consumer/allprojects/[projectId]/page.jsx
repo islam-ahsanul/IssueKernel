@@ -139,14 +139,19 @@ const ProjectDetails = ({ params }) => {
       {projectIssues.map(
         (issue) => {
           let bground;
+          let fground;
           if (issue.status === 'Submitted') {
-            bground = 'gray-300';
+            bground = 'bg-gray-300';
+            fground = 'text-gray-300';
           } else if (issue.status === 'Pending') {
-            bground = 'orange-400';
+            bground = 'bg-orange-400';
+            fground = 'text-orange-400';
           } else if (issue.status === 'Solved') {
-            bground = 'green-500';
+            bground = 'bg-green-500';
+            fground = 'text-green-500';
           } else {
-            bground = 'rose-600';
+            bground = 'bg-rose-600';
+            fground = 'text-rose-600';
           }
           return (
             // <div
@@ -188,10 +193,10 @@ const ProjectDetails = ({ params }) => {
             //   </div>
             // </div>
 
-            <HoverCard>
+            <HoverCard key={issue.issue_id}>
               <HoverCardTrigger>
                 <div
-                  className={`bg-${bground} grid grid-cols-8 bg- w-full my-2 gap-4 py-2 px-2 rounded-xl cursor-pointer`}
+                  className={`${bground} grid grid-cols-8 bg- w-full my-2 gap-4 py-2 px-2 rounded-xl cursor-pointer`}
                 >
                   <div className="truncate font-semibold">{issue.title}</div>
                   <div className="col-span-2">
@@ -202,7 +207,7 @@ const ProjectDetails = ({ params }) => {
                   </div>
                   <div className="col-span-2">{issue.submitted_date}</div>
                   <div
-                    className={`text-${bground} font-semibold bg-black text-center rounded-full`}
+                    className={`${fground} font-semibold bg-black text-center rounded-full`}
                   >
                     {issue.status}
                   </div>
@@ -247,7 +252,7 @@ const ProjectDetails = ({ params }) => {
                       Status:
                     </span>
                     <span
-                      className={`font-bold tracking-wider bg-${bground} text-black px-1 rounded-full`}
+                      className={`font-bold tracking-wider ${bground} text-black px-1 rounded-full`}
                     >
                       {issue.status}
                     </span>
@@ -257,9 +262,7 @@ const ProjectDetails = ({ params }) => {
             </HoverCard>
           );
         }
-        // <p>
-        //   {issue.title} {issue.consumer_id.full_name}
-        // </p>
+  
       )}
     </div>
   );
