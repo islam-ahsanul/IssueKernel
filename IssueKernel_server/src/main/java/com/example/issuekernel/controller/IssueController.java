@@ -77,6 +77,14 @@ public class IssueController {
         }
     }
 
-
+    @GetMapping("/project/{project_id}")
+    public ResponseEntity<List<Issue>> getIssuesByProject(@PathVariable("project_id") Integer projectId) {
+        List<Issue> issues = issueService.getIssuesByProject(projectId);
+        if (issues != null) {
+            return new ResponseEntity<>(issues, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

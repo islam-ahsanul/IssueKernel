@@ -9,6 +9,7 @@ const ProjectDetails = ({ params }) => {
   const [projectDetails, setProjectDetails] = useState({});
   const { data: session } = useSession();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [projectIssues, setProjectIssues] = useState([]);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -36,6 +37,36 @@ const ProjectDetails = ({ params }) => {
 
     fetchProject();
   }, []);
+
+  useEffect(() => {
+    const fetchProjectIssues = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/issues/project/${params.projectId}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `bearer ${session?.user.accessToken}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          const data = await response.json();
+          setProjectIssues(data);
+          console.log(projectIssues);
+        } else {
+          console.log(
+            'Error fetching issue of this project:',
+            response.statusText
+          );
+        }
+      } catch (error) {
+        console.log('Error fetching issue of this project:', error);
+      }
+    };
+    fetchProjectIssues();
+  }, [isModalOpen]);
 
   const {
     project_id,
@@ -83,6 +114,12 @@ const ProjectDetails = ({ params }) => {
       {isModalOpen && (
         <PostIssueModal onClose={closeModal} projectId={project_id} />
       )}
+
+      {projectIssues.map((issue) => (
+        <p>
+          {issue.title} {issue.consumer_id.full_name}
+        </p>
+      ))}
     </div>
   );
 };

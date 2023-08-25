@@ -61,7 +61,15 @@ public class IssueService {
         return null;
     }
 
-    public List<Issue> getAllIssuesForProject(Integer projectId) {
+//    public List<Issue> getAllIssuesForProject(Integer projectId) {
+//        Project project = projectRepository.findById(projectId).orElse(null);
+//        if (project != null) {
+//            return issueRepository.findByProject(project);
+//        }
+//        return null;
+//    }
+
+    public List<Issue> getIssuesByProject(Integer projectId) {
         Project project = projectRepository.findById(projectId).orElse(null);
         if (project != null) {
             return issueRepository.findByProject(project);

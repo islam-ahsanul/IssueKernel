@@ -53,15 +53,15 @@ public class ProjectController {
         }
     }
 
-    @GetMapping("/{project_id}/issues")
-    public ResponseEntity<List<Issue>> getAllIssuesForProject(@PathVariable("project_id") Integer projectId) {
-        List<Issue> issues = issueService.getAllIssuesForProject(projectId);
-        if (issues != null) {
-            return new ResponseEntity<>(issues, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+//    @GetMapping("/{project_id}/issues")
+//    public ResponseEntity<List<Issue>> getAllIssuesForProject(@PathVariable("project_id") Integer projectId) {
+//        List<Issue> issues = issueService.getAllIssuesForProject(projectId);
+//        if (issues != null) {
+//            return new ResponseEntity<>(issues, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 
     @GetMapping("/getmanager/availablemanagers")
     public ResponseEntity<List<User>> getAvailableManagers() {
