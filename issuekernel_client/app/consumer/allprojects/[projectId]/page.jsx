@@ -1,4 +1,10 @@
 'use client';
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@/components/ui/hover-card';
+
 import Image from 'next/image';
 
 import { useState, useEffect } from 'react';
@@ -138,7 +144,9 @@ const ProjectDetails = ({ params }) => {
           } else if (issue.status === 'Pending') {
             bground = 'orange-400';
           } else if (issue.status === 'Solved') {
-            bground = 'lime-400';
+            bground = 'green-500';
+          } else {
+            bground = 'rose-600';
           }
           return (
             // <div
@@ -180,19 +188,73 @@ const ProjectDetails = ({ params }) => {
             //   </div>
             // </div>
 
-            <div
-              className={`grid grid-cols-8 bg-${bground} w-full my-2 gap-4 py-2 px-2 rounded-xl`}
-            >
-              <div className="truncate font-semibold">{issue.title}</div>
-              <div className="col-span-2">
-                <p className="truncate">{issue.description}</p>
-              </div>
-              <div className="truncate col-span-2">
-                {issue.consumer_id.full_name}
-              </div>
-              <div className="col-span-2">{issue.submitted_date}</div>
-              <div>{issue.status}</div>
-            </div>
+            <HoverCard>
+              <HoverCardTrigger>
+                <div
+                  className={`bg-${bground} grid grid-cols-8 bg- w-full my-2 gap-4 py-2 px-2 rounded-xl cursor-pointer`}
+                >
+                  <div className="truncate font-semibold">{issue.title}</div>
+                  <div className="col-span-2">
+                    <p className="truncate">{issue.description}</p>
+                  </div>
+                  <div className="truncate col-span-2">
+                    {issue.consumer_id.full_name}
+                  </div>
+                  <div className="col-span-2">{issue.submitted_date}</div>
+                  <div
+                    className={`text-${bground} font-semibold bg-black text-center rounded-full`}
+                  >
+                    {issue.status}
+                  </div>
+                </div>
+              </HoverCardTrigger>
+              <HoverCardContent>
+                <div className="flex flex-col gap-4 text-lg">
+                  <div>
+                    <span className="text-violet-500 uppercase mr-2 text-sm">
+                      Issue Titile:
+                    </span>{' '}
+                    <span className="font-bold tracking-wider">
+                      {issue.title}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-violet-500 uppercase  mr-2 text-sm">
+                      Issue Description:
+                    </span>
+                    <span className="font-bold tracking-wider">
+                      {issue.description}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-violet-500 uppercase  mr-2 text-sm">
+                      Posted by:
+                    </span>
+                    <span className="font-bold tracking-wider">
+                      {issue.consumer_id.full_name}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-violet-500 uppercase  mr-2 text-sm">
+                      Posted at:
+                    </span>
+                    <span className="font-bold tracking-wider">
+                      {issue.submitted_date}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-violet-500 uppercase mr-2 text-sm">
+                      Status:
+                    </span>
+                    <span
+                      className={`font-bold tracking-wider bg-${bground} text-black px-1 rounded-full`}
+                    >
+                      {issue.status}
+                    </span>
+                  </div>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
           );
         }
         // <p>
