@@ -136,134 +136,131 @@ const ProjectDetails = ({ params }) => {
         <div>STATUS</div>
       </div>
 
-      {projectIssues.map(
-        (issue) => {
-          let bground;
-          let fground;
-          if (issue.status === 'Submitted') {
-            bground = 'bg-gray-300';
-            fground = 'text-gray-300';
-          } else if (issue.status === 'Pending') {
-            bground = 'bg-orange-400';
-            fground = 'text-orange-400';
-          } else if (issue.status === 'Solved') {
-            bground = 'bg-green-500';
-            fground = 'text-green-500';
-          } else {
-            bground = 'bg-rose-600';
-            fground = 'text-rose-600';
-          }
-          return (
-            // <div
-            //   className={`bg-${bground} w-full my-2 rounded-3xl flex flex-col items-center text-white`}
-            // >
-            //   <div className="flex flex-col text-center w-full">
-            //     <div className="my-2 tracking-wider text-black mx-4">
-            //       <span className="tracking-wide text-black text-lg">
-            //         Issue:
-            //       </span>{' '}
-            //       <span className="font-bold">{issue.title}</span>
-            //     </div>
+      {projectIssues.map((issue) => {
+        let bground;
+        let fground;
+        if (issue.status === 'Submitted') {
+          bground = 'bg-gray-300';
+          fground = 'text-gray-300';
+        } else if (issue.status === 'Pending') {
+          bground = 'bg-orange-400';
+          fground = 'text-orange-400';
+        } else if (issue.status === 'Solved') {
+          bground = 'bg-green-500';
+          fground = 'text-green-500';
+        } else {
+          bground = 'bg-rose-600';
+          fground = 'text-rose-600';
+        }
+        return (
+          // <div
+          //   className={`bg-${bground} w-full my-2 rounded-3xl flex flex-col items-center text-white`}
+          // >
+          //   <div className="flex flex-col text-center w-full">
+          //     <div className="my-2 tracking-wider text-black mx-4">
+          //       <span className="tracking-wide text-black text-lg">
+          //         Issue:
+          //       </span>{' '}
+          //       <span className="font-bold">{issue.title}</span>
+          //     </div>
 
-            //     <div className="mb-2 font-mono text-black mx-4">
-            //       {issue.description}
-            //     </div>
+          //     <div className="mb-2 font-mono text-black mx-4">
+          //       {issue.description}
+          //     </div>
 
-            //   </div>
+          //   </div>
 
-            //   <div className="flex flex-row justify-between w-full mt-8 mb-2 gap-2">
-            //     <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
-            //       <span className="text-black tracking-wide">Posted by: </span>
-            //       <span className="bg-dark-1 px-2 rounded-full py-0.5">
-            //         Posted by: {issue.consumer_id.full_name}
-            //       </span>
-            //     </div>
-            //     <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
-            //       <span className="text-black tracking-wide">Posted at: </span>
-            //       <span className="bg-dark-1 px-2 rounded-full py-0.5">
-            //         {issue.submitted_date}
-            //       </span>
-            //     </div>
-            //     <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
-            //       <span className="text-black tracking-wide">Status: </span>
-            //       <span className={`bg-dark-1 px-2 rounded-full py-0.5`}>
-            //         {issue.status}
-            //       </span>
-            //     </div>
-            //   </div>
-            // </div>
+          //   <div className="flex flex-row justify-between w-full mt-8 mb-2 gap-2">
+          //     <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
+          //       <span className="text-black tracking-wide">Posted by: </span>
+          //       <span className="bg-dark-1 px-2 rounded-full py-0.5">
+          //         Posted by: {issue.consumer_id.full_name}
+          //       </span>
+          //     </div>
+          //     <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
+          //       <span className="text-black tracking-wide">Posted at: </span>
+          //       <span className="bg-dark-1 px-2 rounded-full py-0.5">
+          //         {issue.submitted_date}
+          //       </span>
+          //     </div>
+          //     <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
+          //       <span className="text-black tracking-wide">Status: </span>
+          //       <span className={`bg-dark-1 px-2 rounded-full py-0.5`}>
+          //         {issue.status}
+          //       </span>
+          //     </div>
+          //   </div>
+          // </div>
 
-            <HoverCard key={issue.issue_id}>
-              <HoverCardTrigger>
+          <HoverCard key={issue.issue_id}>
+            <HoverCardTrigger>
+              <div
+                className={`${bground} grid grid-cols-8 bg- w-full my-2 gap-4 py-2 px-2 rounded-xl cursor-pointer`}
+              >
+                <div className="truncate font-semibold">{issue.title}</div>
+                <div className="col-span-2">
+                  <p className="truncate">{issue.description}</p>
+                </div>
+                <div className="truncate col-span-2">
+                  {issue.consumer_id.full_name}
+                </div>
+                <div className="col-span-2">{issue.submitted_date}</div>
                 <div
-                  className={`${bground} grid grid-cols-8 bg- w-full my-2 gap-4 py-2 px-2 rounded-xl cursor-pointer`}
+                  className={`${fground} font-semibold bg-black text-center rounded-full`}
                 >
-                  <div className="truncate font-semibold">{issue.title}</div>
-                  <div className="col-span-2">
-                    <p className="truncate">{issue.description}</p>
-                  </div>
-                  <div className="truncate col-span-2">
+                  {issue.status}
+                </div>
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent>
+              <div className="flex flex-col gap-4 text-lg">
+                <div>
+                  <span className="text-violet-500 uppercase mr-2 text-sm">
+                    Issue Titile:
+                  </span>{' '}
+                  <span className="font-bold tracking-wider">
+                    {issue.title}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-violet-500 uppercase  mr-2 text-sm">
+                    Issue Description:
+                  </span>
+                  <span className="font-bold tracking-wider">
+                    {issue.description}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-violet-500 uppercase  mr-2 text-sm">
+                    Posted by:
+                  </span>
+                  <span className="font-bold tracking-wider">
                     {issue.consumer_id.full_name}
-                  </div>
-                  <div className="col-span-2">{issue.submitted_date}</div>
-                  <div
-                    className={`${fground} font-semibold bg-black text-center rounded-full`}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-violet-500 uppercase  mr-2 text-sm">
+                    Posted at:
+                  </span>
+                  <span className="font-bold tracking-wider">
+                    {issue.submitted_date}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-violet-500 uppercase mr-2 text-sm">
+                    Status:
+                  </span>
+                  <span
+                    className={`font-bold tracking-wider ${bground} text-black px-1 rounded-full`}
                   >
                     {issue.status}
-                  </div>
+                  </span>
                 </div>
-              </HoverCardTrigger>
-              <HoverCardContent>
-                <div className="flex flex-col gap-4 text-lg">
-                  <div>
-                    <span className="text-violet-500 uppercase mr-2 text-sm">
-                      Issue Titile:
-                    </span>{' '}
-                    <span className="font-bold tracking-wider">
-                      {issue.title}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-violet-500 uppercase  mr-2 text-sm">
-                      Issue Description:
-                    </span>
-                    <span className="font-bold tracking-wider">
-                      {issue.description}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-violet-500 uppercase  mr-2 text-sm">
-                      Posted by:
-                    </span>
-                    <span className="font-bold tracking-wider">
-                      {issue.consumer_id.full_name}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-violet-500 uppercase  mr-2 text-sm">
-                      Posted at:
-                    </span>
-                    <span className="font-bold tracking-wider">
-                      {issue.submitted_date}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-violet-500 uppercase mr-2 text-sm">
-                      Status:
-                    </span>
-                    <span
-                      className={`font-bold tracking-wider ${bground} text-black px-1 rounded-full`}
-                    >
-                      {issue.status}
-                    </span>
-                  </div>
-                </div>
-              </HoverCardContent>
-            </HoverCard>
-          );
-        }
-  
-      )}
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+        );
+      })}
     </div>
   );
 };
