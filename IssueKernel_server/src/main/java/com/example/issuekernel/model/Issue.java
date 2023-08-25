@@ -32,7 +32,10 @@ public class Issue {
     @JoinColumn(name = "developer_id", referencedColumnName = "user_id")
     private User developer_id;
 
-    public Issue(Integer issue_id, Project project, User consumer_id, String title, String description, String status, User developer_id) {
+    @Column(nullable = false)
+    private String submitted_date;
+
+    public Issue(Integer issue_id, Project project, User consumer_id, String title, String description, String status, User developer_id, String submitted_date) {
         this.issue_id = issue_id;
         this.project = project;
         this.consumer_id = consumer_id;
@@ -40,6 +43,7 @@ public class Issue {
         this.description = description;
         this.status = status;
         this.developer_id = developer_id;
+        this.submitted_date = submitted_date;
     }
 
     public Issue() {
@@ -99,5 +103,13 @@ public class Issue {
 
     public void setDeveloper_id(User developer_id) {
         this.developer_id = developer_id;
+    }
+
+    public String getSubmitted_date() {
+        return submitted_date;
+    }
+
+    public void setSubmitted_date(String submitted_date) {
+        this.submitted_date = submitted_date;
     }
 }

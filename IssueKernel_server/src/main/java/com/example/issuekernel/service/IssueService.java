@@ -9,6 +9,10 @@ import com.example.issuekernel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,6 +37,10 @@ public class IssueService {
             newIssue.setDescription(issue.getDescription());
             newIssue.setStatus("Submitted");
             newIssue.setDeveloper_id(null);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a dd-MM-yyyy");
+            String formattedDate = LocalDateTime.now().format(formatter);
+            newIssue.setSubmitted_date(formattedDate);
 
             return issueRepository.save(newIssue);
         }
