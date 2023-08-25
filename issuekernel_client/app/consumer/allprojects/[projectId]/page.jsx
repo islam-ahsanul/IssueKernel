@@ -118,6 +118,17 @@ const ProjectDetails = ({ params }) => {
       <h1 className="text-light-3 text-2xl mt-20 mb-10 font-semibold tracking-wide uppercase ">
         Issues of this product
       </h1>
+      <div
+        className={`grid grid-cols-8 bg-dark-2 w-full my-2 text-white gap-4 py-2 px-2 rounded-full`}
+      >
+        <div>TITLE</div>
+        <div className="col-span-2">
+          <p className="truncate ">DESCRIPTION</p>
+        </div>
+        <div className="col-span-2">POSTED BY</div>
+        <div className="col-span-2">POSTED AT</div>
+        <div>STATUS</div>
+      </div>
 
       {projectIssues.map(
         (issue) => {
@@ -130,43 +141,57 @@ const ProjectDetails = ({ params }) => {
             bground = 'lime-400';
           }
           return (
-            <div
-              className={`bg-${bground} w-full my-2 rounded-3xl flex flex-col items-center text-white`}
-            >
-              <div className="flex flex-col text-center w-full">
-                <div className="my-2 tracking-wider text-black">
-                  <span className="tracking-wide text-black font-semibold text-lg">
-                    ISSUE:
-                  </span>{' '}
-                  {issue.title}
-                </div>
-                {/* <hr className="h-0.5 border-t-0  bg-gradient-to-r from-transparent via-white/50 to-transparent" /> */}
-                <div className="mb-2 font-mono text-black">
-                  {issue.description}
-                </div>
-                {/* <hr className="h-0.5 border-t-0  bg-gradient-to-r from-transparent via-white/50 to-transparent" /> */}
-              </div>
+            // <div
+            //   className={`bg-${bground} w-full my-2 rounded-3xl flex flex-col items-center text-white`}
+            // >
+            //   <div className="flex flex-col text-center w-full">
+            //     <div className="my-2 tracking-wider text-black mx-4">
+            //       <span className="tracking-wide text-black text-lg">
+            //         Issue:
+            //       </span>{' '}
+            //       <span className="font-bold">{issue.title}</span>
+            //     </div>
 
-              <div className="flex flex-row justify-between w-full mt-8 mb-2 gap-2">
-                <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
-                  <span className="text-black tracking-wide">Posted by: </span>
-                  <span className="bg-dark-1 px-2 rounded-full py-0.5">
-                    {issue.consumer_id.full_name}
-                  </span>
-                </div>
-                <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
-                  <span className="text-black tracking-wide">Posted at: </span>
-                  <span className="bg-dark-1 px-2 rounded-full py-0.5">
-                    {issue.submitted_date}
-                  </span>
-                </div>
-                <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
-                  <span className="text-black tracking-wide">Status: </span>
-                  <span className={`bg-dark-1 px-2 rounded-full py-0.5`}>
-                    {issue.status}
-                  </span>
-                </div>
+            //     <div className="mb-2 font-mono text-black mx-4">
+            //       {issue.description}
+            //     </div>
+
+            //   </div>
+
+            //   <div className="flex flex-row justify-between w-full mt-8 mb-2 gap-2">
+            //     <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
+            //       <span className="text-black tracking-wide">Posted by: </span>
+            //       <span className="bg-dark-1 px-2 rounded-full py-0.5">
+            //         Posted by: {issue.consumer_id.full_name}
+            //       </span>
+            //     </div>
+            //     <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
+            //       <span className="text-black tracking-wide">Posted at: </span>
+            //       <span className="bg-dark-1 px-2 rounded-full py-0.5">
+            //         {issue.submitted_date}
+            //       </span>
+            //     </div>
+            //     <div className="mx-2 flex flex-row items-center gap-1 font-semibold">
+            //       <span className="text-black tracking-wide">Status: </span>
+            //       <span className={`bg-dark-1 px-2 rounded-full py-0.5`}>
+            //         {issue.status}
+            //       </span>
+            //     </div>
+            //   </div>
+            // </div>
+
+            <div
+              className={`grid grid-cols-8 bg-${bground} w-full my-2 gap-4 py-2 px-2 rounded-xl`}
+            >
+              <div className="truncate font-semibold">{issue.title}</div>
+              <div className="col-span-2">
+                <p className="truncate">{issue.description}</p>
               </div>
+              <div className="truncate col-span-2">
+                {issue.consumer_id.full_name}
+              </div>
+              <div className="col-span-2">{issue.submitted_date}</div>
+              <div>{issue.status}</div>
             </div>
           );
         }
