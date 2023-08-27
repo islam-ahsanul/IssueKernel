@@ -63,7 +63,31 @@ const DevsOfThisProject = () => {
     }
   }, [session]);
 
-  return <div>DevsOfThisProject</div>;
+  return (
+    <div className="flex flex-col items-center">
+      <h1 className="text-white text-3xl mb-10 font-semibold">
+        Developers in this project
+      </h1>
+      {devsOfProject.map((dev) => (
+        <article className="rounded-2xl bg-gray-800/50 p-4 m-2 w-full">
+          <div className="grid grid-cols-5">
+            <div className="col-span-2">
+              <h3 className="text-lg font-semibold text-white">
+                {dev.full_name}
+              </h3>
+            </div>
+            <div className="col-span-2">
+              <p className="text-gray-400 font-semibold text-lg">{dev.email}</p>
+            </div>
+
+            <div className="text-gray-400 font-semibold text-lg">
+              {projectDetails.project_name}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
 };
 
 export default DevsOfThisProject;
