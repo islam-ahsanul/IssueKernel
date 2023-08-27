@@ -70,6 +70,7 @@ public class DeveloperProjectService {
             DeveloperDTO developerDTO = new DeveloperDTO();
             developerDTO.setFull_name(developer.getFull_name());
             developerDTO.setEmail(developer.getEmail());
+            developerDTO.setUser_id(developer.getUser_id());
             developerDTOs.add(developerDTO);
         }
 

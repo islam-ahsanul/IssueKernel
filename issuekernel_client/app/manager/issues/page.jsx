@@ -12,7 +12,33 @@ import { useSession } from 'next-auth/react';
 const Issues = () => {
   const [projectDetails, setProjectDetails] = useState({});
   const [projectIssues, setProjectIssues] = useState([]);
+  const [devsOfProject, setDevsOfProject] = useState([]);
   const { data: session } = useSession();
+
+  const fetchDevsOfProject = async (projectId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/developer-projects/${projectId}/developers`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${session?.user.accessToken}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        const data = await response.json();
+        setDevsOfProject(data);
+        console.log('💡');
+        console.log(data);
+      } else {
+        console.log('Error fetching Devs of Project:', response.statusText);
+      }
+    } catch (error) {
+      console.log('Error fetching Devs of Project:', error);
+    }
+  };
 
   const fetchProjectIssues = async (projectId) => {
     try {
@@ -59,6 +85,7 @@ const Issues = () => {
           setProjectDetails(data);
           console.log(projectDetails);
           fetchProjectIssues(data.project_id);
+          fetchDevsOfProject(data.project_id);
         } else {
           console.log('Error fetching user information:', response.statusText);
         }
@@ -71,6 +98,36 @@ const Issues = () => {
       fetchProject(session.user.user_id);
     }
   }, [session]);
+
+  const handleDeveloperChange = async (issueId, developerId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/issues/${issueId}/developer/${developerId}`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${session?.user.accessToken}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        const updatedIssue = await response.json();
+        setProjectIssues((prevIssues) =>
+          prevIssues.map((prevIssue) =>
+            prevIssue.issue_id === updatedIssue.issue_id
+              ? updatedIssue
+              : prevIssue
+          )
+        );
+      } else {
+        console.log('Error updating issue developer:', response.statusText);
+      }
+    } catch (error) {
+      console.log('Error updating issue developer:', error);
+    }
+  };
+
   return (
     <div className="mx-20 items-center flex flex-col">
       <div className="flex flex-col w-full">
@@ -99,9 +156,10 @@ const Issues = () => {
         <div className="col-span-2">
           <p className="truncate ">DESCRIPTION</p>
         </div>
-        <div className="col-span-2">POSTED BY</div>
+
         <div className="col-span-2">POSTED AT</div>
         <div>STATUS</div>
+        <div className="col-span-2">DEVELOPER</div>
       </div>
 
       {projectIssues.map((issue) => (
@@ -114,14 +172,27 @@ const Issues = () => {
               <div className="col-span-2">
                 <p className="truncate">{issue.description}</p>
               </div>
-              <div className="truncate col-span-2">
-                {issue.consumer_id.full_name}
-              </div>
               <div className="col-span-2">{issue.submitted_date}</div>
               <div
                 className={`text-white font-semibold bg-black text-center rounded-full`}
               >
                 {issue.status}
+              </div>
+              <div className="col-span-2">
+                <select
+                  value={issue.developer_id ? issue.developer_id.user_id : -1}
+                  onChange={(e) =>
+                    handleDeveloperChange(issue.issue_id, e.target.value)
+                  }
+                  className="text-white bg-black rounded-full p-1 cursor-pointer"
+                >
+                  <option value={-1}>No developer assigned</option>
+                  {devsOfProject.map((developer) => (
+                    <option key={developer.user_id} value={developer.user_id}>
+                      {developer.full_name}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </HoverCardTrigger>

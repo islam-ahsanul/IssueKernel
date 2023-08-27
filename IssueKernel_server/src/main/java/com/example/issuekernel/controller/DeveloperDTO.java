@@ -4,10 +4,12 @@ public class DeveloperDTO {
 
     private String full_name;
     private String email;
+    private Integer user_id;
 
-    public DeveloperDTO(String full_name, String email) {
+    public DeveloperDTO(Integer user_id,String full_name, String email) {
         this.full_name = full_name;
         this.email = email;
+        this.user_id = user_id;
     }
 
     public DeveloperDTO() {
@@ -27,5 +29,13 @@ public class DeveloperDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getUser_id(){
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id){
+        this.user_id = user_id;
     }
 }
