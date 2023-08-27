@@ -112,15 +112,3 @@ const page = ({ params }) => {
 
 export default page;
 
-// bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-100 via-purple-200 to-yellow-200
-// bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-green-300 via-indigo-800 to-blue-400
-// bg-gradient-to-br from-violet-800 via-zinc-300 to-purple-300
-// bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-rose-500 via-rose-300 to-indigo-800 --this one
-// bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-yellow-900 via-fuchsia-200 to-amber-800
-// bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-rose-800 via-violet-600 to-neutral-400
-// bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-purple-500 via-violet-700 to-indigo-200
-
-// bg-gradient-to-r from-green-300 to-purple-400
-// bg-gradient-to-r from-purple-600  to-purple-950;
-// bg-gradient-to-r from-teal-200 to-lime-200;
-// bg-gradient-to-r from-orange-300 to-rose-300;

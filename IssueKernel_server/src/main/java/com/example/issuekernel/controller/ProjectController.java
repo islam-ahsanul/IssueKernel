@@ -79,4 +79,14 @@ public class ProjectController {
         }
     }
 
+    @GetMapping("/manager/{manager_id}")
+    public ResponseEntity<Project> getProjectByManagerId(@PathVariable("manager_id") Integer managerId) {
+        Project project = projectService.getProjectByManagerId(managerId);
+        if (project != null) {
+            return new ResponseEntity<>(project, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

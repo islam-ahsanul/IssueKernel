@@ -55,5 +55,9 @@ public class ProjectService {
         return null;
     }
 
+    public Project getProjectByManagerId(Integer managerId) {
+        User manager = userService.getUserById(managerId);
+        return projectRepository.findByManagerId(manager);
+    }
 
 }
