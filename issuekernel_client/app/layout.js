@@ -2,6 +2,7 @@
 import './globals.css';
 import React from 'react';
 import { SessionProvider } from 'next-auth/react';
+import { Toaster } from 'react-hot-toast';
 
 // import { Inter, Roboto_Mono } from 'next/font/google';
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children, session }) {
     <html lang="en">
       <body className="bg-dark-1">
         <SessionProvider session={session}>
+          <Toaster />
           {/* <div className="main">
             <div className="gradient"></div>
           </div> */}

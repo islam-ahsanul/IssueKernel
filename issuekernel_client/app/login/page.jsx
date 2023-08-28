@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useSession, signIn } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
 
 const Login = ({ searchParams }) => {
   const [email, setEmail] = useState('');
@@ -34,9 +35,11 @@ const Login = ({ searchParams }) => {
 
       if (result?.error) {
         console.error('Sign-in error:', result.error);
-        alert('Wrogn Credentials');
+        // alert('Wrogn Credentials');
+        toast.error('Login failed! Wrong email or password. ');
       } else if (result?.url) {
         router.push(result.url);
+        toast.success('Login Successfull!');
       }
     } catch (error) {
       console.error('An error occurred during login:', error);
