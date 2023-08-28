@@ -10,7 +10,7 @@ const DevTopBar = () => {
   return (
     <nav className="topbar">
       <Link href="/" className="flex items-center gap-4">
-        <Image src="/logo.svg" alt="logo" width={28} height={28} />
+        <Image src="/bug_icon_logo.png" alt="logo" width={28} height={28} />
         <p className="font-semibold text-white max-sm:hidden tracking-wider">
           IssueKernel
         </p>

@@ -70,7 +70,7 @@ const Login = ({ searchParams }) => {
         <h1 className="head_text text-center">
           <span className="fg_grad_primary">Login</span>
         </h1>
-        <div className="my-7">
+        <div className="my-5">
           <label
             htmlFor="email"
             className="block font-nunito font-semibold text-white ml-1"
@@ -87,7 +87,7 @@ const Login = ({ searchParams }) => {
             required
           />
         </div>
-        <div className="mt-1 mb-10">
+        <div className="mb-10">
           <label
             htmlFor="password"
             className="block font-nunito font-semibold text-white ml-1"
