@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useSession, signIn } from 'next-auth/react';
 import { toast } from 'react-hot-toast';
+import Image from 'next/image';
 
 const Login = ({ searchParams }) => {
   const [email, setEmail] = useState('');
@@ -56,13 +57,20 @@ const Login = ({ searchParams }) => {
 
       <form
         onSubmit={handleSignIn}
-        className="w-full max-w-2xl flex flex-col gap-7 px-10 py-8 border border-slate-700 bg-gray-800/30 rounded-3xl"
+        className="w-full max-w-2xl flex flex-col px-10 py-8 border border-slate-700 bg-gray-800/30 rounded-3xl"
       >
         {searchParams?.message && <p>{searchParams?.message}</p>}
+        <Link href="/">
+          {' '}
+          <div className="flex flex-row gap-3">
+            <Image src="/back_to_home.svg" alt="home" width={24} height={24} />
+            <p className="text-gray-400">Back to home</p>
+          </div>
+        </Link>
         <h1 className="head_text text-center">
           <span className="fg_grad_primary">Login</span>
         </h1>
-        <div className="mb-1">
+        <div className="my-7">
           <label
             htmlFor="email"
             className="block font-nunito font-semibold text-white ml-1"
@@ -79,7 +87,7 @@ const Login = ({ searchParams }) => {
             required
           />
         </div>
-        <div className="mb-6">
+        <div className="mt-1 mb-10">
           <label
             htmlFor="password"
             className="block font-nunito font-semibold text-white ml-1"
@@ -98,7 +106,7 @@ const Login = ({ searchParams }) => {
         </div>
         <button
           type="submit"
-          className="font-nunito w-full bg-white text-dark-1 py-2 px-4 rounded-full hover:bg_grad_primary hover:text-white"
+          className="font-nunito w-full bg-white text-dark-1 py-2 px-4 mb-4 rounded-full hover:bg_grad_primary hover:text-white"
         >
           {submitting ? 'Loging in...' : 'Login'}
         </button>

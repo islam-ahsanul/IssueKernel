@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
+import Image from 'next/image';
 
 const Register = () => {
   const router = useRouter();
@@ -49,12 +50,19 @@ const Register = () => {
       </div> */}
       <form
         onSubmit={createAccount}
-        className="w-full max-w-2xl flex flex-col gap-7 px-10 py-4 border border-slate-700 bg-gray-800/30 rounded-3xl"
+        className="w-full max-w-2xl flex flex-col px-10 py-4 border border-slate-700 bg-gray-800/30 rounded-3xl"
       >
+        <Link href="/">
+          {' '}
+          <div className="flex flex-row gap-3 mb-1">
+            <Image src="/back_to_home.svg" alt="home" width={24} height={24} />
+            <p className="text-gray-400">Back to home</p>
+          </div>
+        </Link>
         <h1 className="head_text text-center">
           <span className="fg_grad_primary">Create Account</span>
         </h1>
-        <div className="mb-1">
+        <div className="my-2">
           <label
             htmlFor="fullname"
             className="block font-nunito font-semibold text-white ml-1"
@@ -76,7 +84,7 @@ const Register = () => {
             required
           />
         </div>
-        <div className="mb-1">
+        <div className="my-2">
           <label
             htmlFor="email"
             className="block font-nunito font-semibold text-white ml-1"
@@ -98,7 +106,7 @@ const Register = () => {
             required
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-6 mt-2">
           <label
             htmlFor="password"
             className="block font-nunito font-semibold text-white ml-1"
@@ -122,7 +130,7 @@ const Register = () => {
         </div>
         <button
           type="submit"
-          className="font-nunito w-full bg-white text-dark-1 py-2 px-4 rounded-full hover:bg_grad_primary"
+          className="font-nunito w-full bg-white text-dark-1 py-2 px-4 rounded-full hover:bg_grad_primary mt-2 mb-3"
         >
           {submitting ? 'Creating Accout...' : 'Create Account'}
         </button>

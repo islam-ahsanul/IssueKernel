@@ -136,7 +136,7 @@ main {
   }
 
   .head_text {
-    @apply mt-1 text-4xl font-nunito font-extrabold leading-[1.15] text-black sm:text-5xl;
+    @apply text-3xl font-nunito font-extrabold leading-[1.15] text-black sm:text-5xl;
   }
 
   .orange_gradient {
