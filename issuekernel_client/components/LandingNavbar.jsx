@@ -10,16 +10,20 @@ const LandingNavbar = () => {
 
   return (
     // <nav className="flex justify-between items-center py-5 px-8 border-b border-nav-border gap-4">
-    <nav className="flex justify-between w-full pt-3 px-5 md:px-20 gap-10">
+    <nav className="flex justify-between w-full pt-3 px-5 md:px-20 gap-10 items-center">
       <div>
         <Link href="/">
-          <Image
+          {/* <Image
             src="/issuekernel_logo.svg"
             width={220}
             height={43}
             alt="IssueKernel"
             className="transition-all hover:scale-125 hover:ease-linear duration-150"
-          />
+          /> */}
+          <p className="text-white font-bodoni text-4xl mt-2 tracking-widest font-bold">
+            {' '}
+            {'<'} <span className="fg_logo">IssueKernel</span> {'/>'}
+          </p>
         </Link>
       </div>
       {session?.user ? (

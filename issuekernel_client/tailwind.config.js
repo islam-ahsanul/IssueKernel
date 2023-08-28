@@ -43,6 +43,7 @@ module.exports = {
         satoshi: ['Satoshi', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
         nunito: ['Nunito'],
+        bodoni: ['Bodoni Moda'],
       },
       colors: {
         'primary-500': '#877EFF',

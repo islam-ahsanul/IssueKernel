@@ -38,12 +38,13 @@ const SignedLanding = () => {
 
   return (
     <>
-      <section className="flex-center flex-col paddings mt-15 mx-20">
+      <section className="flex-center flex-col paddings mt-20 mx-20">
         <h1 className="font-extrabold text-5xl text-black tracking-wide text-left purple_gradient">
           Welcome, {account.full_name}
-          Your ID: {account.user_id}
-          Your Email: {account.email}
         </h1>
+        <h2 className="text-light-3 mt-5 font-semibold text-2xl text-center max-w-xl align-middle">
+          {account.email}
+        </h2>
         <div className=" text-white mt-14 font-semibold text-2xl text-center max-w-xl align-middle">
           You are signed in as {account.role}
         </div>
