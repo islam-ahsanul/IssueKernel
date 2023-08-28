@@ -18,7 +18,13 @@ export default function RootLayout({ children, session }) {
     <html lang="en">
       <body className="bg-dark-1">
         <SessionProvider session={session}>
-          <Toaster />
+          <Toaster
+            toastOptions={{
+              style: {
+                fontWeight: 'bold',
+              },
+            }}
+          />
           {/* <div className="main">
             <div className="gradient"></div>
           </div> */}

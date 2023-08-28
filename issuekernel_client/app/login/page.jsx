@@ -39,7 +39,7 @@ const Login = ({ searchParams }) => {
         toast.error('Login failed! Wrong email or password. ');
       } else if (result?.url) {
         router.push(result.url);
-        toast.success('Login Successfull!');
+        toast.success('Login Successfull');
       }
     } catch (error) {
       console.error('An error occurred during login:', error);

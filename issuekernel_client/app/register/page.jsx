@@ -31,7 +31,7 @@ const Register = () => {
       });
       if (response.ok) {
         router.push('/login');
-        toast.success('Registration Successfull! Please login. ');
+        toast.success('Registration Successfull. Please login! ');
       }
     } catch (error) {
       toast.error('Something went wrong!');
