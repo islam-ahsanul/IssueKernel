@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/issues")
@@ -36,8 +37,8 @@ public class IssueController {
     }
 
     @PutMapping("/{issue_id}")
-    public ResponseEntity<Issue> updateIssueStatus(@PathVariable("issue_id") Integer issueId, @RequestBody String status) {
-
+    public ResponseEntity<Issue> updateIssueStatus(@PathVariable("issue_id") Integer issueId, @RequestBody Map<String, String> requestBody) {
+        String status = requestBody.get("status");
         Issue issue = issueService.updateIssueStatus(issueId, status);
         if (issue != null) {
             return new ResponseEntity<>(issue, HttpStatus.OK);

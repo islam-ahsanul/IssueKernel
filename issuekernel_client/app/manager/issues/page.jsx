@@ -99,6 +99,37 @@ const Issues = () => {
     }
   }, [session]);
 
+  const updateIssueStatus = async (issueId, newStatus) => {
+    try {
+      const statusResponse = await fetch(
+        `http://localhost:8080/api/issues/${issueId}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${session?.user.accessToken}`,
+          },
+          body: JSON.stringify({ status: newStatus }),
+        }
+      );
+
+      if (statusResponse.status === 200) {
+        const updatedIssueWithStatus = await statusResponse.json();
+        setProjectIssues((prevIssues) =>
+          prevIssues.map((prevIssue) =>
+            prevIssue.issue_id === updatedIssueWithStatus.issue_id
+              ? updatedIssueWithStatus
+              : prevIssue
+          )
+        );
+      } else {
+        console.log('Error updating issue status:', statusResponse.statusText);
+      }
+    } catch (error) {
+      console.log('Error updating issue status:', error);
+    }
+  };
+
   const handleDeveloperChange = async (issueId, developerId) => {
     try {
       const response = await fetch(
@@ -113,13 +144,9 @@ const Issues = () => {
 
       if (response.status === 200) {
         const updatedIssue = await response.json();
-        setProjectIssues((prevIssues) =>
-          prevIssues.map((prevIssue) =>
-            prevIssue.issue_id === updatedIssue.issue_id
-              ? updatedIssue
-              : prevIssue
-          )
-        );
+
+        const newStatus = developerId === -1 ? 'Submitted' : 'Pending';
+        updateIssueStatus(issueId, newStatus);
       } else {
         console.log('Error updating issue developer:', response.statusText);
       }
