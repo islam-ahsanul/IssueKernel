@@ -28,13 +28,15 @@ const Login = ({ searchParams }) => {
       const result = await signIn('credentials', {
         email,
         password,
-        redirect: true,
+        redirect: false,
         callbackUrl: '/',
       });
 
-      // Handle the result (you can add error handling here)
       if (result?.error) {
         console.error('Sign-in error:', result.error);
+        alert('Wrogn Credentials');
+      } else if (result?.url) {
+        router.push(result.url);
       }
     } catch (error) {
       console.error('An error occurred during login:', error);
