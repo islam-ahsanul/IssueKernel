@@ -153,4 +153,10 @@ public class UserController {
         List<User> availableDevelopers = userService.getAvailableDevelopers();
         return new ResponseEntity<>(availableDevelopers, HttpStatus.OK);
     }
+
+    @GetMapping("/managers-with-projects")
+    public ResponseEntity<List<ManagerWithProjectDTO>> getManagersWithProjects() {
+        List<ManagerWithProjectDTO> managersWithProjects = userService.getManagersWithProjects();
+        return new ResponseEntity<>(managersWithProjects, HttpStatus.OK);
+    }
 }

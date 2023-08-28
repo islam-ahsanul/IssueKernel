@@ -1,13 +1,18 @@
 package com.example.issuekernel.service;
 
+import com.example.issuekernel.controller.ManagerWithProjectDTO;
+import com.example.issuekernel.model.Project;
 import com.example.issuekernel.model.User;
+import com.example.issuekernel.repository.ProjectRepository;
 import com.example.issuekernel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -15,6 +20,8 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private ProjectRepository projectRepository;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -55,5 +62,33 @@ public class UserService {
     }
     public List<User> getUsersByIds(List<Integer> userIds) {
         return userRepository.findAllById(userIds);
+    }
+
+
+//    @Override
+    public List<ManagerWithProjectDTO> getManagersWithProjects() {
+        List<User> allUsers = userRepository.findAll();
+        List<ManagerWithProjectDTO> managersWithProjects = new ArrayList<>();
+
+        List<User> managers = allUsers.stream()
+                .filter(user -> user.getRole().equals("Manager"))
+                .collect(Collectors.toList());
+
+        for (User manager : managers) {
+            ManagerWithProjectDTO dto = new ManagerWithProjectDTO();
+            dto.setManagerName(manager.getFull_name());
+            dto.setManagerEmail(manager.getEmail());
+
+            Project project = projectRepository.findByManagerId(manager);
+            if (project != null) {
+                dto.setProjectName(project.getProject_name());
+            } else {
+                dto.setProjectName("No project assigned");
+            }
+
+            managersWithProjects.add(dto);
+        }
+
+        return managersWithProjects;
     }
 }
