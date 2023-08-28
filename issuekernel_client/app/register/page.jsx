@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { toast } from 'react-hot-toast';
 
 const Register = () => {
   const router = useRouter();
@@ -30,8 +31,10 @@ const Register = () => {
       });
       if (response.ok) {
         router.push('/login');
+        toast.success('Registration Successfull! Please login. ');
       }
     } catch (error) {
+      toast.error('Something went wrong!');
       console.log('errrrrr in page');
       console.log(error);
     } finally {
