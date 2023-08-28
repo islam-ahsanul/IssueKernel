@@ -45,6 +45,38 @@ const DeveloperIssues = () => {
       fetchDevIssues(session.user.user_id);
     }
   }, [session]);
+
+  const handleStatusChange = async (issueId, newStatus) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/issues/${issueId}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${session?.user.accessToken}`,
+          },
+          body: JSON.stringify({ status: newStatus }),
+        }
+      );
+
+      if (response.status === 200) {
+        // Update the local devIssues state with the updated status
+        const updatedDevIssues = devIssues.map((issue) => {
+          if (issue.issue_id === issueId) {
+            return { ...issue, status: newStatus };
+          }
+          return issue;
+        });
+        setDevIssues(updatedDevIssues);
+      } else {
+        console.log('Error updating issue status:', response.statusText);
+      }
+    } catch (error) {
+      console.log('Error updating issue status:', error);
+    }
+  };
+
   return (
     <div className="mx-20 items-center flex flex-col">
       <h1 className="text-light-3 text-2xl mt-20 mb-10 font-semibold tracking-wide uppercase ">
@@ -92,10 +124,18 @@ const DeveloperIssues = () => {
                   {issue.consumer_id.full_name}
                 </div>
                 <div className="col-span-2">{issue.submitted_date}</div>
-                <div
-                  className={`${fground} font-semibold bg-black text-center rounded-full`}
-                >
-                  {issue.status}
+                <div className="font-bold">
+                  <select
+                    value={issue.status}
+                    onChange={(e) =>
+                      handleStatusChange(issue.issue_id, e.target.value)
+                    }
+                    className={`${bground} text-black rounded-full`}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Solved">Solved</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
                 </div>
               </div>
             </HoverCardTrigger>
