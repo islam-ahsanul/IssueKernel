@@ -18,6 +18,16 @@ import ProjectCard from '@/components/ProjectCard';
 
 const AllProjects = () => {
   const { data: session } = useSession();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(!isModalOpen);
+    // router.refresh();
+  };
 
   //* Fetch All Projects !
 
@@ -44,7 +54,7 @@ const AllProjects = () => {
       }
     };
     fetchAllProjects();
-  }, []);
+  }, [isModalOpen]);
 
   //* Form Logic !
 
@@ -73,7 +83,7 @@ const AllProjects = () => {
 
       if (response.ok) {
         console.log('Project Created 💡🌳');
-        router.refresh();
+        closeModal();
       }
     } catch (error) {
       console.log('errrrrr in page');
