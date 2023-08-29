@@ -189,86 +189,105 @@ const Issues = () => {
         <div className="col-span-2">DEVELOPER</div>
       </div>
 
-      {projectIssues.map((issue) => (
-        <HoverCard key={issue.issue_id}>
-          <HoverCardTrigger>
-            <div
-              className={`bg-white grid grid-cols-8 bg- w-full my-2 gap-4 py-2 px-2 rounded-xl cursor-pointer`}
-            >
-              <div className="truncate font-semibold">{issue.title}</div>
-              <div className="col-span-2">
-                <p className="truncate">{issue.description}</p>
-              </div>
-              <div className="col-span-2">{issue.submitted_date}</div>
+      {projectIssues.map((issue) => {
+        let bground;
+        let fground;
+        if (issue.status === 'Submitted') {
+          bground = 'bg-gray-300';
+          fground = 'text-gray-300';
+        } else if (issue.status === 'Pending') {
+          bground = 'bg-orange-400';
+          fground = 'text-orange-400';
+        } else if (issue.status === 'Solved') {
+          bground = 'bg-green-500';
+          fground = 'text-green-500';
+        } else {
+          bground = 'bg-rose-600';
+          fground = 'text-rose-600';
+        }
+        return (
+          <HoverCard key={issue.issue_id}>
+            <HoverCardTrigger>
               <div
-                className={`text-white font-semibold bg-black text-center rounded-full`}
+                className={`${bground} grid grid-cols-8 bg- w-full my-2 gap-4 py-2 px-2 rounded-xl cursor-pointer`}
               >
-                {issue.status}
-              </div>
-              <div className="col-span-2">
-                <select
-                  value={issue.developer_id ? issue.developer_id.user_id : -1}
-                  onChange={(e) =>
-                    handleDeveloperChange(issue.issue_id, e.target.value)
-                  }
-                  className="text-white bg-black rounded-full p-1 cursor-pointer"
-                >
-                  <option value={-1}>No developer assigned</option>
-                  {devsOfProject.map((developer) => (
-                    <option key={developer.user_id} value={developer.user_id}>
-                      {developer.full_name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </HoverCardTrigger>
-          <HoverCardContent>
-            <div className="flex flex-col gap-4 text-lg">
-              <div>
-                <span className="text-violet-500 uppercase mr-2 text-sm">
-                  Issue Titile:
-                </span>{' '}
-                <span className="font-bold tracking-wider">{issue.title}</span>
-              </div>
-              <div>
-                <span className="text-violet-500 uppercase  mr-2 text-sm">
-                  Issue Description:
-                </span>
-                <span className="font-bold tracking-wider">
-                  {issue.description}
-                </span>
-              </div>
-              <div>
-                <span className="text-violet-500 uppercase  mr-2 text-sm">
-                  Posted by:
-                </span>
-                <span className="font-bold tracking-wider">
-                  {issue.consumer_id.full_name}
-                </span>
-              </div>
-              <div>
-                <span className="text-violet-500 uppercase  mr-2 text-sm">
-                  Posted at:
-                </span>
-                <span className="font-bold tracking-wider">
-                  {issue.submitted_date}
-                </span>
-              </div>
-              <div>
-                <span className="text-violet-500 uppercase mr-2 text-sm">
-                  Status:
-                </span>
-                <span
-                  className={`font-bold tracking-wider bg-white text-black px-1 rounded-full`}
+                <div className="truncate font-semibold">{issue.title}</div>
+                <div className="col-span-2">
+                  <p className="truncate">{issue.description}</p>
+                </div>
+                <div className="col-span-2">{issue.submitted_date}</div>
+                <div
+                  className={`${fground} font-semibold bg-black text-center rounded-full`}
                 >
                   {issue.status}
-                </span>
+                </div>
+                <div className="col-span-2">
+                  <select
+                    value={issue.developer_id ? issue.developer_id.user_id : -1}
+                    onChange={(e) =>
+                      handleDeveloperChange(issue.issue_id, e.target.value)
+                    }
+                    className={`text-black ${bground} rounded-full p-1 cursor-pointer truncate`}
+                  >
+                    <option value={-1}>No developer assigned</option>
+                    {devsOfProject.map((developer) => (
+                      <option key={developer.user_id} value={developer.user_id}>
+                        {developer.full_name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-            </div>
-          </HoverCardContent>
-        </HoverCard>
-      ))}
+            </HoverCardTrigger>
+            <HoverCardContent>
+              <div className="flex flex-col gap-4 text-lg">
+                <div>
+                  <span className="text-violet-500 uppercase mr-2 text-sm">
+                    Issue Titile:
+                  </span>{' '}
+                  <span className="font-bold tracking-wider">
+                    {issue.title}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-violet-500 uppercase  mr-2 text-sm">
+                    Issue Description:
+                  </span>
+                  <span className="font-bold tracking-wider">
+                    {issue.description}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-violet-500 uppercase  mr-2 text-sm">
+                    Posted by:
+                  </span>
+                  <span className="font-bold tracking-wider">
+                    {issue.consumer_id.full_name}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-violet-500 uppercase  mr-2 text-sm">
+                    Posted at:
+                  </span>
+                  <span className="font-bold tracking-wider">
+                    {issue.submitted_date}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-violet-500 uppercase mr-2 text-sm">
+                    Status:
+                  </span>
+                  <span
+                    className={`font-bold tracking-wider ${bground} text-black px-1 rounded-full`}
+                  >
+                    {issue.status}
+                  </span>
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+        );
+      })}
     </div>
   );
 };
