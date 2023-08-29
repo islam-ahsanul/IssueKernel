@@ -180,6 +180,9 @@ main {
   .fg_logo {
     @apply bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-300 via-white to-gray-400 bg-clip-text text-transparent;
   }
+  .fg_grad_secondary {
+    @apply bg-gradient-to-r from-orange-300 to-rose-300 bg-clip-text text-transparent;
+  }
 
   /* description text */
   .desc {
