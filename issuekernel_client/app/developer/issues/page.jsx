@@ -80,7 +80,7 @@ const DeveloperIssues = () => {
   return (
     <div className="mx-20 items-center flex flex-col">
       <h1 className="text-light-3 text-2xl mt-20 mb-10 font-semibold tracking-wide uppercase ">
-        Your Issues
+        Issues you're assigned with
       </h1>
       <div
         className={`grid grid-cols-8 bg-dark-2 w-full my-2 text-white gap-4 py-2 px-2 rounded-full`}

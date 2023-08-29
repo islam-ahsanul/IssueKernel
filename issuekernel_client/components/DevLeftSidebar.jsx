@@ -13,7 +13,7 @@ export const sidebarLinks = [
   },
 
   {
-    imgURL: '/developer.svg',
+    imgURL: '/request.svg',
     route: '/developer/issues',
     label: 'Issues',
   },

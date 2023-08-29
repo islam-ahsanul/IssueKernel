@@ -19,7 +19,7 @@ const sidebarLinks = [
   },
 
   {
-    imgURL: '/developer.svg',
+    imgURL: '/request.svg',
     route: '/consumer/issues',
     label: 'Issue History',
   },
