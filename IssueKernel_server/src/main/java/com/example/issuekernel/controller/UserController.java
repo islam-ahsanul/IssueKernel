@@ -18,6 +18,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -158,5 +159,24 @@ public class UserController {
     public ResponseEntity<List<ManagerWithProjectDTO>> getManagersWithProjects() {
         List<ManagerWithProjectDTO> managersWithProjects = userService.getManagersWithProjects();
         return new ResponseEntity<>(managersWithProjects, HttpStatus.OK);
+    }
+
+    @GetMapping("/user-counts-by-role")
+    public Map<String, Long> getUserCountsByRole() {
+        List<User> managers = userService.getUsersByRole("Manager");
+        List<User> developers = userService.getUsersByRole("Developer");
+        List<User> consumers = userService.getUsersByRole("Consumer");
+
+        Map<String, Long> roleCounts = new HashMap<>();
+        roleCounts.put("Manager", (long) managers.size());
+        roleCounts.put("Developer", (long) developers.size());
+        roleCounts.put("Consumer", (long) consumers.size());
+        // Add more roles as needed
+        return roleCounts;
+    }
+
+    @GetMapping("/total-user-count")
+    public Long getTotalUserCount() {
+        return userService.getTotalUserCount();
     }
 }

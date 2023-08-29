@@ -14,4 +14,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("SELECT u FROM User u WHERE u.role = 'Developer' AND u.user_id NOT IN (SELECT dp.developer_id.user_id FROM DeveloperProject dp)")
     List<User> findAvailableDevelopers();
 
+    @Query("SELECT u FROM User u WHERE u.role = ?1")
+    List<User> findByRole(String role);
 }

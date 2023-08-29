@@ -91,4 +91,12 @@ public class UserService {
 
         return managersWithProjects;
     }
+
+    public Long getTotalUserCount() {
+        return userRepository.count();
+    }
+
+    public List<User> getUsersByRole(String role) {
+        return userRepository.findByRole(role);
+    }
 }
