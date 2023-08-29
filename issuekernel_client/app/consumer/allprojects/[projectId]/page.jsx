@@ -195,7 +195,7 @@ const ProjectDetails = ({ params }) => {
           <HoverCard key={issue.issue_id}>
             <HoverCardTrigger>
               <div
-                className={`${bground} grid grid-cols-8 bg- w-full my-2 gap-4 py-2 px-2 rounded-xl cursor-pointer`}
+                className={`${bground} grid grid-cols-8 w-full my-2 gap-4 py-2 px-2 rounded-xl cursor-pointer`}
               >
                 <div className="truncate font-semibold">{issue.title}</div>
                 <div className="col-span-2">
