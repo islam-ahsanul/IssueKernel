@@ -75,7 +75,7 @@ const AdminDashboard = () => {
       <div className="grid grid-cols-8 gap-2 w-full h-32 mt-10">
         <div className="flex flex-col bg-gray-800/50 col-span-2 items-center rounded-2xl">
           <p className="text-gray-400 text-xl tracking-wide mt-2 mb-3">
-            Toral User Count
+            Total User Count
           </p>
           <p className="text-white text-6xl tracking-wide justify-center">
             {totalUserCount}

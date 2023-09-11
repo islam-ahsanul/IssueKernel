@@ -71,16 +71,56 @@ const ManagerDasgboard = () => {
         {session?.user.full_name}
       </div>
 
-      <div className="text-white text-xl tracking-wider my-16">
+      <div className="text-white text-xl tracking-wider mt-16 mb-5">
         Explore your project, manage developers under you and issues.
       </div>
-      <div className="text-white text-xl tracking-wider my-16">
-        {projectDetails.project_name}
-        <h2>Issue Statistics</h2>
+      <div className="flex flex-col bg-gray-800/50 col-span-2 items-center rounded-3xl w-72">
+        <div className="text-gray-400 text-xl tracking-wide mt-2 mb-3">
+          Your Project
+        </div>
+        <div className="text-gray-400 mt-2 mb-3 tracking-widest font-bold purple_gradient text-3xl">
+          {projectDetails.project_name}
+        </div>
+        {/* <h2>Issue Statistics</h2>
         <p>Total Issues: {statistics.totalIssues}</p>
         <p>Solved Issues: {statistics.solvedIssues}</p>
         <p>Pending Issues: {statistics.pendingIssues}</p>
-        <p>Rejected Issues: {statistics.rejectedIssues}</p>
+        <p>Rejected Issues: {statistics.rejectedIssues}</p> */}
+      </div>
+
+      <div className="grid grid-cols-8 gap-2 w-full h-32 mt-10">
+        <div className="flex flex-col bg-gray-800/50 col-span-2 items-center rounded-2xl">
+          <p className="text-gray-400 text-xl tracking-wide mt-2 mb-3">
+            Total Issues
+          </p>
+          <p className="text-white text-6xl tracking-wide justify-center">
+            {statistics.totalIssues}
+          </p>
+        </div>
+        <div className="flex flex-col bg-gray-800/50 col-span-2 items-center rounded-2xl">
+          <p className="text-gray-400 text-xl tracking-wide mt-2 mb-3">
+            Solved
+          </p>
+          <p className="text-green-500 text-6xl tracking-wide justify-center">
+            {statistics.solvedIssues}
+          </p>
+        </div>
+        <div className="flex flex-col bg-gray-800/50 col-span-2 items-center rounded-2xl">
+          <p className="text-gray-400 text-xl tracking-wide mt-2 mb-3">
+            Pending
+          </p>
+          <p className="text-orange-400 text-6xl tracking-wide justify-center">
+            {statistics.pendingIssues}
+          </p>
+        </div>
+        <div className="flex flex-col bg-gray-800/50 col-span-2 items-center rounded-2xl">
+          <p className="text-gray-400 text-xl tracking-wide mt-2 mb-3">
+            Rejected
+          </p>
+          <p className="text-rose-600 text-6xl tracking-wide justify-center">
+            {statistics.rejectedIssues}
+          </p>
+        </div>
       </div>
     </div>
   );
