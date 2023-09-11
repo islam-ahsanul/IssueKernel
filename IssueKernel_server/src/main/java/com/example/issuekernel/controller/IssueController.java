@@ -88,4 +88,15 @@ public class IssueController {
         }
     }
 
+    @GetMapping("/project/{project_id}/statistics")
+    public ResponseEntity<Map<String, Long>> getIssueStatisticsForProject(@PathVariable("project_id") Integer projectId) {
+        Map<String, Long> issueStatistics = issueService.getIssueStatisticsForProject(projectId);
+        if (issueStatistics != null) {
+            return new ResponseEntity<>(issueStatistics, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }

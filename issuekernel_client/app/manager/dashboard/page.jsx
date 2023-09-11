@@ -5,6 +5,33 @@ import { useState, useEffect } from 'react';
 const ManagerDasgboard = () => {
   const { data: session } = useSession();
   const [projectDetails, setProjectDetails] = useState({});
+  const [statistics, setStatistics] = useState({});
+
+  const fetchIssueStats = async (projectId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/issues/project/${projectId}/statistics`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${session?.user.accessToken}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        const data = await response.json();
+        setStatistics(data);
+        console.log('💡');
+        console.log(data);
+      } else {
+        console.log('Error fetching stats', response.statusText);
+      }
+    } catch (error) {
+      console.log('Error fetching stats:', error);
+    }
+  };
+
   useEffect(() => {
     const fetchProject = async (id) => {
       try {
@@ -21,7 +48,7 @@ const ManagerDasgboard = () => {
         if (response.status === 200) {
           const data = await response.json();
           setProjectDetails(data);
-          // fetchProjectIssues(data.project_id);
+          fetchIssueStats(data.project_id);
           // fetchDevsOfProject(data.project_id);
         } else {
           console.log('Error fetching user information:', response.statusText);
@@ -49,6 +76,11 @@ const ManagerDasgboard = () => {
       </div>
       <div className="text-white text-xl tracking-wider my-16">
         {projectDetails.project_name}
+        <h2>Issue Statistics</h2>
+        <p>Total Issues: {statistics.totalIssues}</p>
+        <p>Solved Issues: {statistics.solvedIssues}</p>
+        <p>Pending Issues: {statistics.pendingIssues}</p>
+        <p>Rejected Issues: {statistics.rejectedIssues}</p>
       </div>
     </div>
   );

@@ -13,7 +13,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class IssueService {
@@ -103,6 +105,23 @@ public class IssueService {
             return issueRepository.save(issue);
         }
         return null;
+    }
+
+    public Map<String, Long> getIssueStatisticsForProject(Integer projectId) {
+        Project project = projectRepository.findById(projectId).orElse(null);
+        if (project == null) {
+            return null; // Project not found
+        }
+
+        List<Object[]> statistics = issueRepository.getIssueStatisticsForProject(project);
+
+        Map<String, Long> issueStatistics = new HashMap<>();
+        issueStatistics.put("totalIssues", (Long) statistics.get(0)[0]);
+        issueStatistics.put("solvedIssues", (Long) statistics.get(0)[1]);
+        issueStatistics.put("pendingIssues", (Long) statistics.get(0)[2]);
+        issueStatistics.put("rejectedIssues", (Long) statistics.get(0)[3]);
+
+        return issueStatistics;
     }
 
 }
