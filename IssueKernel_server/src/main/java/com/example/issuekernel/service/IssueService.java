@@ -124,4 +124,22 @@ public class IssueService {
         return issueStatistics;
     }
 
+    public Map<String, Long> getIssueStatisticsForDeveloper(Integer developerId) {
+        User developer = userRepository.findById(developerId).orElse(null);
+        if (developer == null) {
+            return null; // Developer not found
+        }
+
+        List<Object[]> statistics = issueRepository.getIssueStatisticsForDeveloper(developer);
+
+        Map<String, Long> issueStatistics = new HashMap<>();
+        issueStatistics.put("totalIssues", (Long) statistics.get(0)[0]);
+        issueStatistics.put("solvedIssues", (Long) statistics.get(0)[1]);
+        issueStatistics.put("pendingIssues", (Long) statistics.get(0)[2]);
+        issueStatistics.put("rejectedIssues", (Long) statistics.get(0)[3]);
+
+        return issueStatistics;
+    }
+
+
 }
