@@ -35,5 +35,11 @@ public interface IssueRepository extends JpaRepository<Issue, Integer> {
             "FROM Issue i WHERE i.developer_id = :developer")
     List<Object[]> getIssueStatisticsForDeveloper(@Param("developer") User developer);
 
+    @Query("SELECT COALESCE(COUNT(i), 0), " +
+            "COALESCE(SUM(CASE WHEN i.status = 'solved' THEN 1 ELSE 0 END), 0), " +
+            "COALESCE(SUM(CASE WHEN i.status = 'pending' THEN 1 ELSE 0 END), 0), " +
+            "COALESCE(SUM(CASE WHEN i.status = 'rejected' THEN 1 ELSE 0 END), 0) " +
+            "FROM Issue i WHERE i.consumer_id = :consumer")
+    List<Object[]> getIssueStatisticsForConsumer(@Param("consumer") User consumer);
 
 }
